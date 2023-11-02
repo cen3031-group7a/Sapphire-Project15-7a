@@ -19,12 +19,14 @@ import StudentLogin from './views/StudentLogin/StudentLogin';
 import ForgetPassword from './views/TeacherLogin/ForgetPassword';
 import ResetPassword from './views/TeacherLogin/ResetPassword';
 import TeacherLogin from './views/TeacherLogin/TeacherLogin';
+import HomeDashboard from './views/HomeDashboard';
 
 const App = () => {
   return (
     <div>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/homedashboard' element={<HomeDashboard />} />
         <Route path='/about' element={<About />} />
         <Route path='/teacherlogin' element={<TeacherLogin />} />
         <Route path='/forgot-password' element={<ForgetPassword />} />
