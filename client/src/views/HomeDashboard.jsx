@@ -29,22 +29,77 @@ const pastePurple = {
 
 const HomeDashboard = () => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-      <h1 style={{ textAlign: 'center' }}>Welcome to the Student Homepage</h1>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      height: '100vh',
+    }}>
+      <h1 style={{
+        textAlign: 'center',
+        fontSize: '48px',
+      }}>Welcome to the Student Homepage</h1>
       <div style={{ flex: 1, display: 'flex' }}>
-        <Link to="/dashboard" style={{ ...buttonStyle, ...pastelYellow }}>
-          <button style={{ width: '100%', fontSize: '24px' }}>My Programs</button>
+        <Link to="/dashboard" style={{
+          ...buttonStyle,
+          ...pastelYellow,
+          margin: '20px',
+          borderRadius: '20px',
+          border: 'black 2px solid'
+        }}>
+          <button style={{
+            width: '100%',
+            fontSize: '24px',
+            background: 'none',
+            border: 'none',
+            fontSize: '40px',
+          }}>My Programs</button>
         </Link>
-        <Link to="/activityLevel" style={{ ...buttonStyle, ...pastelGreen }}>
-          <button style={{ width: '100%', fontSize: '24px' }}>Parental Controls</button>
+        <Link to="/activityLevel" style={{
+          ...buttonStyle,
+          ...pastelGreen,
+          margin: '20px',
+          borderRadius: '20px',
+          border: 'black 2px solid'
+        }}>
+          <button style={{
+            width: '100%',
+            fontSize: '24px',
+            background: 'none',
+            border: 'none',
+            fontSize: '40px',
+          }}>Parental Controls</button>
         </Link>
       </div>
       <div style={{ flex: 1, display: 'flex' }}>
-        <Link to="/report" style={{ ...buttonStyle, ...pastelBlue }}>
-          <button style={{ width: '100%', fontSize: '24px' }}>Classroom</button>
+        <Link to="/report" style={{
+          ...buttonStyle,
+          ...pastelBlue,
+          margin: '20px',
+          borderRadius: '20px',
+          border: 'black 2px solid'
+        }}>
+          <button style={{
+            width: '100%',
+            fontSize: '24px',
+            background: 'none',
+            border: 'none',
+            fontSize: '40px',
+          }}>Classroom</button>
         </Link>
-        <Link to="/group-report" style={{ ...buttonStyle, ...pastePurple }}>
-          <button style={{ width: '100%', fontSize: '24px' }}>Gallery</button>
+        <Link to="/group-report" style={{
+          ...buttonStyle,
+          ...pastePurple,
+          margin: '20px',
+          borderRadius: '20px',
+          border: 'black 2px solid'
+        }}>
+          <button style={{
+            width: '100%',
+            fontSize: '24px',
+            background: 'none',
+            border: 'none',
+            fontSize: '40px',
+          }}>Gallery</button>
         </Link>
       </div>
     </div>
