@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const buttonStyle = {
   flex: 1,
@@ -27,7 +27,9 @@ const pastePurple = {
 
 
 
-const HomeDashboard = () => {
+export default function HomeDashboard() {
+  const navigate = useNavigate();
+
   return (
     <div style={{
       display: 'flex',
@@ -39,7 +41,7 @@ const HomeDashboard = () => {
         fontSize: '48px',
       }}>Welcome to the Student Homepage</h1>
       <div style={{ flex: 1, display: 'flex' }}>
-        <Link to="/dashboard" style={{
+        <Link to="/myprograms" style={{
           ...buttonStyle,
           ...pastelYellow,
           margin: '20px',
@@ -54,7 +56,7 @@ const HomeDashboard = () => {
             fontSize: '40px',
           }}>My Programs</button>
         </Link>
-        <Link to="/activityLevel" style={{
+        <Link to="/parentalcontrols" style={{
           ...buttonStyle,
           ...pastelGreen,
           margin: '20px',
@@ -71,7 +73,7 @@ const HomeDashboard = () => {
         </Link>
       </div>
       <div style={{ flex: 1, display: 'flex' }}>
-        <Link to="/report" style={{
+        <Link to="/assignments" style={{
           ...buttonStyle,
           ...pastelBlue,
           margin: '20px',
@@ -86,7 +88,7 @@ const HomeDashboard = () => {
             fontSize: '40px',
           }}>Classroom</button>
         </Link>
-        <Link to="/group-report" style={{
+        <Link to="/gallery" style={{
           ...buttonStyle,
           ...pastePurple,
           margin: '20px',
@@ -105,5 +107,3 @@ const HomeDashboard = () => {
     </div>
   );
 };
-
-export default HomeDashboard;

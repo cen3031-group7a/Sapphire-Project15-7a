@@ -15,7 +15,7 @@ export default function HomeJoin(props) {
       if (res.data) {
         setLoading(false);
         localStorage.setItem('join-code', joinCode);
-        navigate('/homedashboard');
+        navigate('/login');
       } else {
         setLoading(false);
         message.error('Join failed. Please input a valid join code.');

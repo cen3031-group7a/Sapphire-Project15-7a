@@ -72,7 +72,7 @@ export default function StudentLogin() {
       const res = await postJoin(joinCode, ids);
       if (res.data) {
         setUserSession(res.data.jwt, JSON.stringify(res.data.students));
-        navigate('/student');
+        navigate('/homedashboard');
       } else {
         message.error('Name or Animal not selected.');
       }

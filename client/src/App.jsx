@@ -14,12 +14,12 @@ import ActivityLevelReport from './views/Researcher/ActivityLevelReport';
 import ActivityLevelReportView from './views/Researcher/ActivityLevelReportView';
 import GroupReport from './views/Researcher/GroupReport';
 import Report from './views/Researcher/Report';
-import Student from './views/Student/Student';
+import Assignments from './views/Assignments/Assignments';
 import StudentLogin from './views/StudentLogin/StudentLogin';
 import ForgetPassword from './views/TeacherLogin/ForgetPassword';
 import ResetPassword from './views/TeacherLogin/ResetPassword';
 import TeacherLogin from './views/TeacherLogin/TeacherLogin';
-import HomeDashboard from './views/HomeDashboard';
+import HomeDashboard from './views/HomeDashboard/HomeDashboard';
 
 const App = () => {
   return (
@@ -33,6 +33,7 @@ const App = () => {
         <Route path='/forgot-password' element={<ForgetPassword />} />
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/login' element={<StudentLogin />} />
+        <Route path='/assignments' element={<Assignments />} />
         <Route path='/replay/:saveID' element={<Replay />} />
         <Route path='/sandbox' element={<BlocklyPage isSandbox={true} />} />
         <Route
@@ -76,14 +77,6 @@ const App = () => {
           }
         />
         <Route
-          path='/student'
-          element={
-            <PrivateRoute>
-              <Student />
-            </PrivateRoute>
-          }
-        />
-        <Route
           path='/classroom/:id'
           element={
             <PrivateRoute>
@@ -116,7 +109,7 @@ const App = () => {
           }
         />
         <Route path='/bugreport' element={<BugReport />} />
-        <Route path='*' element={<NotFound/>} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </div>
   );

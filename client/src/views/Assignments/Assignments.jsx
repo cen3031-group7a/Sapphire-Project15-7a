@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
 import { getStudentClassroom } from '../../Utils/requests';
-import './Student.less';
+import './Assignments.less';
 
-function Student() {
+function Assignments() {
   const [learningStandard, setLessonModule] = useState({});
   const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ function Student() {
         } else {
           message.error(res.err);
         }
-      } catch {}
+      } catch { }
     };
     fetchData();
   }, []);
@@ -66,4 +66,4 @@ function Student() {
   );
 }
 
-export default Student;
+export default Assignments;
