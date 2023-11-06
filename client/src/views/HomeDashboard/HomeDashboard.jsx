@@ -7,54 +7,54 @@ const buttonStyle = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  minWidth: '200px', // Set a minimum width for the buttons
+  minHeight: '250px', // Set a minimum height for the buttons
+  border: '2px solid darkblue',
+  color: 'darkblue',
 };
 
-const pastelYellow = {
-  background: '#FFF68F', // Pastel Yellow
+const lightBlue = {
+  background: 'lightblue', // Light Blue
 };
 
-const pastelGreen = {
-  background: '#B0E57C', // Pastel Green
+const gold = {
+  background: 'gold', // Gold
 };
-const pastelBlue = {
-  background: '#A4D9E0', // Pastel Blue
-};
-
-const pastePurple = {
-  background: '#C9A0DC', // Pastel Blue
-};
-
-
-
-
 
 export default function HomeDashboard() {
   const navigate = useNavigate();
 
   return (
-
-    <div className='container nav-padding'>
+    <div className='container nav-padding' style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100vh',
+    }}>
       <NavBar />
-      <div id='activity-container'>
+      <div id='activity-container' style={{
+        border: '2px solid black', // Add a border around the activity container
+        borderRadius: '20px', // Rounded corners
+        padding: '20px', // Add padding to the container
+        width: '80%', // Adjust the width as needed
+        maxWidth: '800px', // Set a maximum width if necessary
+      }}>
         <div id='header'>
           <div>Dashboard</div>
         </div>
         <div style={{
           display: 'flex',
           flexDirection: 'column',
-          height: '100vh',
         }}>
           <h1 style={{
             textAlign: 'center',
             fontSize: '48px',
           }}>Welcome to the Student Homepage</h1>
-          <div style={{ flex: 1, display: 'flex' }}>
+          <div style={{ display: 'flex' }}>
             <Link to="/myprograms" style={{
               ...buttonStyle,
-              ...pastelYellow,
-              margin: '20px',
-              borderRadius: '20px',
-              border: 'black 2px solid'
+              ...lightBlue,
             }}>
               <button style={{
                 width: '100%',
@@ -66,10 +66,7 @@ export default function HomeDashboard() {
             </Link>
             <Link to="/parentalcontrols" style={{
               ...buttonStyle,
-              ...pastelGreen,
-              margin: '20px',
-              borderRadius: '20px',
-              border: 'black 2px solid'
+              ...gold,
             }}>
               <button style={{
                 width: '100%',
@@ -80,13 +77,10 @@ export default function HomeDashboard() {
               }}>Parental Controls</button>
             </Link>
           </div>
-          <div style={{ flex: 1, display: 'flex' }}>
+          <div style={{ display: 'flex' }}>
             <Link to="/assignments" style={{
               ...buttonStyle,
-              ...pastelBlue,
-              margin: '20px',
-              borderRadius: '20px',
-              border: 'black 2px solid'
+              ...gold,
             }}>
               <button style={{
                 width: '100%',
@@ -98,10 +92,7 @@ export default function HomeDashboard() {
             </Link>
             <Link to="/gallery" style={{
               ...buttonStyle,
-              ...pastePurple,
-              margin: '20px',
-              borderRadius: '20px',
-              border: 'black 2px solid'
+              ...lightBlue,
             }}>
               <button style={{
                 width: '100%',
@@ -116,4 +107,4 @@ export default function HomeDashboard() {
       </div>
     </div>
   );
-};
+}
