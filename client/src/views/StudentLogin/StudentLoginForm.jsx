@@ -1,4 +1,5 @@
 import React from 'react';
+import ParentalControlsPage from '../ParentalControlsPage/ParentalControlsPage';
 
 export default function StudentLoginForm(props) {
   const setStudentOptions = () => {
