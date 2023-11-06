@@ -7,7 +7,7 @@ const buttonStyle = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  minWidth: '200px',
+  minWidth: '100px',
   minHeight: '300px',
   border: '2px solid darkblue',
   color: 'darkblue',
@@ -23,21 +23,20 @@ const gold = {
 
 const containerStyle = {
   display: 'flex',
-  flexDirection: 'column',
   alignItems: 'center',
+  flexDirection: 'column',
   justifyContent: 'center',
-  minHeight: '100vh',
+  // minHeight: '100vh',
 };
 
 const activityContainerStyle = {
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
   border: '2px solid black',
   borderRadius: '40px',
   padding: '20px',
   width: '100%', // Set width to 100% to take up the entire screen width
-  maxWidth: '800px',
+  maxWidth: '1500px',
 };
 
 export default function HomeDashboard() {
