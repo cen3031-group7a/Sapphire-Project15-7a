@@ -7,39 +7,46 @@ const buttonStyle = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  minWidth: '200px', // Set a minimum width for the buttons
-  minHeight: '250px', // Set a minimum height for the buttons
+  minWidth: '200px',
+  minHeight: '300px',
   border: '2px solid darkblue',
   color: 'darkblue',
 };
 
 const lightBlue = {
-  background: 'lightblue', // Light Blue
+  background: 'lightblue',
 };
 
 const gold = {
-  background: 'gold', // Gold
+  background: 'gold',
+};
+
+const containerStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  minHeight: '100vh',
+};
+
+const activityContainerStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  border: '2px solid black',
+  borderRadius: '40px',
+  padding: '20px',
+  width: '100%', // Set width to 100% to take up the entire screen width
+  maxWidth: '800px',
 };
 
 export default function HomeDashboard() {
   const navigate = useNavigate();
 
   return (
-    <div className='container nav-padding' style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '100vh',
-    }}>
+    <div className='container nav-padding' style={containerStyle}>
       <NavBar />
-      <div id='activity-container' style={{
-        border: '2px solid black', // Add a border around the activity container
-        borderRadius: '20px', // Rounded corners
-        padding: '20px', // Add padding to the container
-        width: '80%', // Adjust the width as needed
-        maxWidth: '800px', // Set a maximum width if necessary
-      }}>
+      <div id='activity-container' style={activityContainerStyle}>
         <div id='header'>
           <div>Dashboard</div>
         </div>
