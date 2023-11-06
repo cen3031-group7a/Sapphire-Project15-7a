@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "parents",
+  "info": {
+    "name": "Parent",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "email": {
+      "type": "email"
+    },
+    "student": {
+      "model": "student"
+    },
+    "password": {
+      "type": "password"
+    },
+    "Name": {
+      "type": "string"
+    }
+  }
+}
