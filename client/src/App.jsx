@@ -22,6 +22,7 @@ import TeacherLogin from './views/TeacherLogin/TeacherLogin';
 import HomeDashboard from './views/HomeDashboard/HomeDashboard';
 import Gallery from './views/Gallery/gallery';
 import ParentalControls from './views/ParentalControls/parentalcontrols'
+import MyPrograms from './views/MyPrograms/MyPrograms'
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
         <Route path='/sandbox' element={<BlocklyPage isSandbox={true} />} />
         <Route path='/gallery' element={<Gallery />} />
         <Route path='/parentalcontrols' element={<ParentalControls />} />
+        <Route path='/myprograms' element={<MyPrograms />} />
         <Route
           path='/report'
           element={
