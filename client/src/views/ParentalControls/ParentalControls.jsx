@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import NavBar from '../../components/NavBar/NavBar';
 import { Link, useNavigate } from 'react-router-dom';
+import './ParentalControls.less'; 
 
 const ParentalControls = () => {
   //possibly change this to parentalcontrollogin to differentiate from the acutal page with the controls
@@ -18,7 +19,6 @@ const ParentalControls = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform email and password verification logic here.
     navigate('/parentalcontrolspage');
   };
 
@@ -48,10 +48,13 @@ const ParentalControls = () => {
               required
             />
           </div>
+          <div className='center-button'>
           <button type='submit' className='submit-button'>Log In</button>
+          </div>
+          <div className='center-button'>
           <button type='submit' className='submit-button'>Forgot Password?</button>
-        </form>
-        {/* Add your parental controls content here */}
+          </div>
+           </form>
       </div>
     </div>
   );
