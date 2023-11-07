@@ -112,7 +112,7 @@ export default function NavBar() {
             : value.role === 'Mentor'
             ? '/dashboard'
             : value.role === 'Student'
-            ? '/student'
+            ? '/homedashboard'
             : value.role === 'Researcher'
             ? '/report'
             : '/'
