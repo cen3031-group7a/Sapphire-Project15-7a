@@ -5,11 +5,13 @@ import NavBar from '../../components/NavBar/NavBar';
 export default function ParentalControlsPage() {
   const listStyle = {
     textAlign: 'left',
+    justifyContent: 'center',
     padding: '5px',
-    marginLeft: '20px',
-    marginRight: '20px',
+    marginLeft: '40px',
+    marginRight: '0px',
     marginBottom: '40px',
     borderRadius: '5px',
+    //backgroundColor: 'rgba(61, 159, 230, 0.45)',
   };  
 
   const columnStyle = {
@@ -18,7 +20,14 @@ export default function ParentalControlsPage() {
     padding: '10px', 
     border: '3px solid #3b719f',
     borderRadius: '10px',
+    backgroundColor: 'rgba(61, 159, 230, 0.45)',
   };  
+
+  const buttonStyle = {
+    display: 'flex', 
+    justifyContent: 'center',
+    marginRight: '30px',
+  }
 
   const handleClick = (e) => {
     //e.preventDefault;
@@ -61,9 +70,9 @@ export default function ParentalControlsPage() {
               <li>Participate in public discussions</li>
               <li>Toggle time limits</li>
               <li>Access outside resources</li>
-              <li>Recieve notifications</li>
+              <li>Receive notifications</li>
             </ul>
-            <div id='add-button' className="centered-buttons" style={{alignItems: 'center'}}>
+            <div id='add-button' style={buttonStyle}>
               <button onClick={handleClick}>Edit Permissions</button> 
               {/*when clicked will take to restrictions page where there can be various on/off switches for different permissions*/}
             </div>
