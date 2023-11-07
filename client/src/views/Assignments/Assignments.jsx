@@ -39,28 +39,33 @@ function Assignments() {
         <div id='header'>
           <div>Select your Activity</div>
         </div>
-        <ul>
-          {learningStandard.activities ? (
-            learningStandard.activities
-              .sort((activity1, activity2) => activity1.number - activity2.number)
-              .map((activity) => (
-                <div
-                  key={activity.id}
-                  id='list-item-wrapper'
-                  onClick={() => handleSelection(activity)}
-                >
-                  <li>{`${learningStandard.name}: Activity ${activity.number}`}</li>
-                </div>
-              ))
-          ) : (
-            <div>
-              <p>There is currently no active learning standard set.</p>
-              <p>
-                When your classroom manager selects one, it will appear here.
-              </p>
-            </div>
-          )}
-        </ul>
+        <div id='activity-list-section'>
+          <ul>
+            {learningStandard.activities ? (
+              learningStandard.activities
+                .sort((activity1, activity2) => activity1.number - activity2.number)
+                .map((activity) => (
+                  <div
+                    key={activity.id}
+                    id='list-item-wrapper'
+                    onClick={() => handleSelection(activity)}
+                  >
+                    <li>{`${learningStandard.name}: Activity ${activity.number}`}</li>
+                  </div>
+                ))
+            ) : (
+              <div>
+                <p>There is currently no active learning standard set.</p>
+                <p>
+                  When your classroom manager selects one, it will appear here.
+                </p>
+              </div>
+            )}
+          </ul>
+        </div>
+        <div id='grades-section'>
+          <h1 id='grades-title'>Performance and Grades</h1>
+        </div>
       </div>
     </div>
   );
