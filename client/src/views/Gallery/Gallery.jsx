@@ -3,11 +3,11 @@ import NavBar from '../../components/NavBar/NavBar';
 import './Gallery.less';
 
 const Gallery = () => {
+  //Replace this with actual data from gallery team but this is dummy data for demonstration. 
   const projectsData = [
     { id: 1, name: 'Sample Project 1', category: 'My Projects' },
     { id: 2, name: 'Sample Project 2', category: 'Shared Projects' },
     { id: 3, name: 'Sample Project 3', category: 'Saved Projects' },
-    // Add more project objects as needed
   ];
 
   const [projects, setProjects] = useState(projectsData);
@@ -21,6 +21,8 @@ const Gallery = () => {
     );
   });
 
+  //A student should be able to search and filter their project with these funcitonailities. 
+
   return (
     <div className="container nav-padding">
       <NavBar />
@@ -29,7 +31,6 @@ const Gallery = () => {
           <div>Gallery Page</div>
         </div>
         <div>
-          {/* Category selection buttons */}
           <div className="centered-buttons">
             <button
               onClick={() => setCategoryFilter('All')}
@@ -56,7 +57,6 @@ const Gallery = () => {
               Saved Projects
             </button>
           </div>
-          {/* Search input */}
           <label htmlFor="search">Search:</label>
           <input
             id="search"

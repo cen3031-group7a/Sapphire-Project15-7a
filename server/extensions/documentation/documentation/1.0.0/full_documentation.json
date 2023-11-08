@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "11/07/2023 4:01:28 AM"
+    "x-generation-date": "11/08/2023 12:37:26 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -12288,6 +12288,12 @@
                 "last_logged_in": {
                   "type": "string"
                 },
+                "parents": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -13208,6 +13214,12 @@
               "last_logged_in": {
                 "type": "string"
               },
+              "parents": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "created_by": {
                 "type": "string"
               },
@@ -13685,6 +13697,12 @@
                 "last_logged_in": {
                   "type": "string"
                 },
+                "parents": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -14074,6 +14092,40 @@
           "last_logged_in": {
             "type": "string",
             "format": "date-time"
+          },
+          "parents": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "student": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "Name": {
+                  "type": "string"
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
@@ -14104,6 +14156,12 @@
           "last_logged_in": {
             "type": "string",
             "format": "date-time"
+          },
+          "parents": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "created_by": {
             "type": "string"

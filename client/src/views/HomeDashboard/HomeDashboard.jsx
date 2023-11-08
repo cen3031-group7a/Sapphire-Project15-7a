@@ -7,8 +7,8 @@ const buttonStyle = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  minWidth: '100px',
-  minHeight: '300px',
+  width: '14vh',
+  height: '12vw',
   border: '2px solid darkblue',
   color: 'darkblue',
 };
@@ -34,9 +34,7 @@ const activityContainerStyle = {
   flexDirection: 'column',
   border: '2px solid black',
   borderRadius: '40px',
-  padding: '20px',
-  width: '100%', // Set width to 100% to take up the entire screen width
-  maxWidth: '1500px',
+  width: '80%', // Set width to 80% for cleaner look
 };
 
 export default function HomeDashboard() {
@@ -52,10 +50,11 @@ export default function HomeDashboard() {
         <div style={{
           display: 'flex',
           flexDirection: 'column',
+          height: '20vh'
         }}>
           <h1 style={{
             textAlign: 'center',
-            fontSize: '48px',
+            fontSize: '6vh',
           }}>Welcome to the Student Homepage</h1>
           <div style={{ display: 'flex' }}>
             <Link to="/myprograms" style={{
@@ -68,6 +67,7 @@ export default function HomeDashboard() {
                 background: 'none',
                 border: 'none',
                 fontSize: '40px',
+                cursor: 'pointer',
               }}>My Programs</button>
             </Link>
             <Link to="/parentalcontrols" style={{
@@ -80,6 +80,7 @@ export default function HomeDashboard() {
                 background: 'none',
                 border: 'none',
                 fontSize: '40px',
+                cursor: 'pointer',
               }}>Parental Controls</button>
             </Link>
           </div>
@@ -94,6 +95,7 @@ export default function HomeDashboard() {
                 background: 'none',
                 border: 'none',
                 fontSize: '40px',
+                cursor: 'pointer',
               }}>Classroom</button>
             </Link>
             <Link to="/gallery" style={{
@@ -106,6 +108,7 @@ export default function HomeDashboard() {
                 background: 'none',
                 border: 'none',
                 fontSize: '40px',
+                cursor: 'pointer',
               }}>Gallery</button>
             </Link>
           </div>
