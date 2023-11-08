@@ -8,7 +8,7 @@ const buttonStyle = {
   justifyContent: 'center',
   alignItems: 'center',
   width: '14vh',
-  height: '28vh',
+  height: '12vw',
   border: '2px solid darkblue',
   color: 'darkblue',
 };

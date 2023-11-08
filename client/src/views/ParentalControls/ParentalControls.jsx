@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './ParentalControls.less'; 
 
 const ParentalControls = () => {
-  //possibly change this to parentalcontrollogin to differentiate from the acutal page with the controls
+  //possibly change this to parentalcontrollogin to differentiate from the actual page with the controls
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -49,12 +49,19 @@ const ParentalControls = () => {
             />
           </div>
           <div className='center-button'>
-          <button type='submit' className='submit-button'>Log In</button>
+            <div style={{
+                display: 'flex',
+                width: '26vw',
+                justifyContent: 'space-between'
+              }}>
+              <button type='submit' className='submit-button'>Log In</button>
+              <button type='button' className='submit-button'>Forgot Password?</button>
+            </div>
           </div>
           <div className='center-button'>
-          <button type='submit' className='submit-button'>Forgot Password?</button>
+          <button type='button' className='submit-button'>Create Account</button>
           </div>
-           </form>
+          </form>
       </div>
     </div>
   );
