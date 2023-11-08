@@ -784,6 +784,40 @@
           "last_logged_in": {
             "type": "string",
             "format": "date-time"
+          },
+          "parents": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "student": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "Name": {
+                  "type": "string"
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
@@ -814,6 +848,12 @@
           "last_logged_in": {
             "type": "string",
             "format": "date-time"
+          },
+          "parents": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "created_by": {
             "type": "string"
