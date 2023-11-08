@@ -9,6 +9,7 @@ const ParentalControls = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  //this page will take in a parents email and password and give them access to a dashboard, where they can enable permissions, see performance, and programs. 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
