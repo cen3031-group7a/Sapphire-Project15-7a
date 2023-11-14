@@ -37,6 +37,10 @@
     },
     "parents": {
       "collection": "parent"
+    },
+    "programs": {
+      "via": "student",
+      "collection": "program"
     }
   }
 }
