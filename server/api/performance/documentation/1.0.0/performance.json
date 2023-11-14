@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/programs": {
+    "/performances": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -12,7 +12,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Program"
+                    "$ref": "#/components/schemas/Performance"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Program"
+          "Performance"
         ],
         "parameters": [
           {
@@ -201,7 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Program"
+                  "$ref": "#/components/schemas/Performance"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Program"
+          "Performance"
         ],
         "requestBody": {
           "description": "",
@@ -247,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewProgram"
+                "$ref": "#/components/schemas/NewPerformance"
               }
             }
           }
         }
       }
     },
-    "/programs/count": {
+    "/performances/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -306,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "Program"
+          "Performance"
         ],
         "parameters": []
       }
     },
-    "/programs/{id}": {
+    "/performances/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -321,7 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Program"
+                  "$ref": "#/components/schemas/Performance"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Program"
+          "Performance"
         ],
         "parameters": [
           {
@@ -383,7 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Program"
+                  "$ref": "#/components/schemas/Performance"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Program"
+          "Performance"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewProgram"
+                "$ref": "#/components/schemas/NewPerformance"
               }
             }
           }
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Program"
+          "Performance"
         ],
         "parameters": [
           {
@@ -514,7 +514,7 @@
   },
   "components": {
     "schemas": {
-      "Program": {
+      "Performance": {
         "required": [
           "id"
         ],
@@ -522,52 +522,8 @@
           "id": {
             "type": "string"
           },
-          "title": {
+          "grade": {
             "type": "string"
-          },
-          "student": {
-            "required": [
-              "id",
-              "enrolled"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "character": {
-                "type": "string"
-              },
-              "classroom": {
-                "type": "string"
-              },
-              "sessions": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "enrolled": {
-                "type": "boolean"
-              },
-              "last_logged_in": {
-                "type": "string"
-              },
-              "programs": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
           },
           "published_at": {
             "type": "string",
@@ -575,12 +531,9 @@
           }
         }
       },
-      "NewProgram": {
+      "NewPerformance": {
         "properties": {
-          "title": {
-            "type": "string"
-          },
-          "student": {
+          "grade": {
             "type": "string"
           },
           "published_at": {
@@ -599,7 +552,7 @@
   },
   "tags": [
     {
-      "name": "Program"
+      "name": "Performance"
     }
   ]
 }

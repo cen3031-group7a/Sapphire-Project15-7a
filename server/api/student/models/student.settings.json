@@ -35,9 +35,6 @@
     "last_logged_in": {
       "type": "datetime"
     },
-    "parents": {
-      "collection": "parent"
-    },
     "programs": {
       "via": "student",
       "collection": "program"

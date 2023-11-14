@@ -943,12 +943,6 @@
                 "last_logged_in": {
                   "type": "string"
                 },
-                "parents": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "programs": {
                   "type": "array",
                   "items": {

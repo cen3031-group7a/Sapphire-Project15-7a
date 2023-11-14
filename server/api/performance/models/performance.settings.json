@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "collectionName": "performances",
+  "info": {
+    "name": "Performance"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "grade": {
+      "type": "string"
+    }
+  }
+}
