@@ -13,10 +13,10 @@ const makeRequest = async ({ method, path, data, auth = false, error }) => {
   let err = null;
   const config = auth
     ? {
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
-      }
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    }
     : null;
 
   try {
@@ -43,6 +43,35 @@ const makeRequest = async ({ method, path, data, auth = false, error }) => {
 
   return { data: res, err: err };
 };
+
+export const getPrograms = async () =>
+  makeRequest({
+    method: GET,
+    path: `${server}/programs`,
+    auth: true,
+    error: 'Programs could not be retrieved.',
+  });
+
+export const postProgram = async (name, description) =>
+  makeRequest({
+    method: POST,
+    path: `${server}/programs`,
+    data: {
+      name,
+      description,
+    },
+    auth: true,
+    error: 'Program could not be created.',
+  });
+
+export const deleteProgram = async (id) =>
+  makeRequest({
+    method: DELETE,
+    path: `${server}/programs/${id}`,
+    auth: true,
+    error: 'Program could not be deleted.',
+  });
+
 
 export const getActivities = async () =>
   makeRequest({
@@ -504,7 +533,7 @@ export const getLessonModuleActivities = async (lsId) =>
     error: 'Activity cannot be retrived',
   });
 
-  export const getActivityLevels = async (lsId) =>
+export const getActivityLevels = async (lsId) =>
   makeRequest({
     method: GET,
     path: `${server}/authorized-workspaces?activities.id=${lsId}`,

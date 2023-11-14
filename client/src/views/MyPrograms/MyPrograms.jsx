@@ -54,25 +54,27 @@ const MyPrograms = ({ history }) => {
         </div>
         <div id='add-button'>
           <button ref={buttonRef} onClick={handleCreateNew}>Create New</button>
-          {isCreatingNew && (
-            <div className='popup' style={{ backgroundColor: 'lightblue', position: 'absolute', top: buttonRef.current.offsetTop, left: buttonRef.current.offsetLeft + buttonRef.current.offsetWidth + 10, padding: '20px', borderRadius: '8px', width: '300px' }}>
-              <div className='popup-inner' style={{ backgroundColor: 'white', padding: '20px', borderRadius: '8px' }}>
-                <h2>Create New Project</h2>
-                <label htmlFor='projectName'>Project Name:</label>
-                <input
-                  id='projectName'
-                  type='text'
-                  placeholder='Enter project name'
-                  value={newProgramName}
-                  onChange={(e) => setNewProgramName(e.target.value)}
-                  style={{ width: '100%', padding: '10px', marginBottom: '20px' }}
-                />
-                <button onClick={handleCreateProgram} style={{ backgroundColor: 'blue', color: 'white', padding: '12px 20px', marginRight: '10px', borderRadius: '6px', border: 'none' }}>Create</button>
-                <button onClick={() => setIsCreatingNew(false)} style={{ backgroundColor: 'blue', color: 'white', padding: '12px 20px', borderRadius: '6px', border: 'none' }}>Cancel</button>
+          {
+            isCreatingNew && (
+              <div className='popup' style={{ backgroundColor: 'lightblue', position: 'absolute', top: buttonRef.current.offsetTop, left: buttonRef.current.offsetLeft + buttonRef.current.offsetWidth + 10, padding: '20px', borderRadius: '8px', width: '300px' }}>
+                <div className='popup-inner' style={{ backgroundColor: 'white', padding: '20px', borderRadius: '8px' }}>
+                  <h2>Create New Project</h2>
+                  <label htmlFor='projectName'>Project Name:</label>
+                  <input
+                    id='projectName'
+                    type='text'
+                    placeholder='Enter project name'
+                    value={newProgramName}
+                    onChange={(e) => setNewProgramName(e.target.value)}
+                    style={{ width: '100%', padding: '10px', marginBottom: '20px' }}
+                  />
+                  <button onClick={handleCreateProgram} style={{ backgroundColor: 'blue', color: 'white', padding: '12px 20px', marginRight: '10px', borderRadius: '6px', border: 'none' }}>Create</button>
+                  <button onClick={() => setIsCreatingNew(false)} style={{ backgroundColor: 'blue', color: 'white', padding: '12px 20px', borderRadius: '6px', border: 'none' }}>Cancel</button>
+                </div>
               </div>
-            </div>
-          )}
-        </div>
+            )
+          }
+        </div >
         <div id='program-list'>
           <ul>
             {programs.map((program) => (
@@ -87,9 +89,9 @@ const MyPrograms = ({ history }) => {
                       <div className='menu'>
                         <h1>Actions for {program.name}:</h1>
                         <ul>
-                          <li>Edit</li>
-                          <li>Share</li>
-                          <li>Delete</li>
+                          <li onClick={handleEdit}>Edit</li>
+                          <li onClick={handleShare}>Share</li>
+                          <li onClick={handleDelete}>Delete</li>
                         </ul>
                       </div>
                     )}
@@ -103,7 +105,7 @@ const MyPrograms = ({ history }) => {
           </ul>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
