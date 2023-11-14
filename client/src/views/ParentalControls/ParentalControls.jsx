@@ -1,13 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBar from '../../components/NavBar/NavBar';
 import { Link, useNavigate } from 'react-router-dom';
 import './ParentalControls.less'; 
+import { getParents } from '../../Utils/requests';
 
 const ParentalControls = () => {
   //possibly change this to parentalcontrollogin to differentiate from the actual page with the controls
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [parentList, setParentList] = useState([]);
+
+  useEffect(() => {
+    getParents().then((res) => {
+      if (res.data) {
+        setParentList(res.data);
+      } else {
+        //message.error(res.err);
+      }
+    });
+  });
+  // , [student]
 
   //this page will take in a parents email and password and give them access to a dashboard, where they can enable permissions, see performance, and programs. 
   const handleEmailChange = (e) => {
@@ -63,6 +76,9 @@ const ParentalControls = () => {
           <button type='button' className='submit-button'>Create Account</button>
           </div>
           </form>
+      </div>
+      <div>
+        {parentList}
       </div>
     </div>
   );
