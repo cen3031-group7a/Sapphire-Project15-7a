@@ -58,18 +58,38 @@ ul {
 li {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 2%; /* Adjust the percentage as needed */
+  font-size: 1.5vw; /* Default font size */
+}
+
+@media (max-width: 768px) {
+  li {
+    font-size: 3vw; /* Adjust the font size for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  li {
+    font-size: 4vw; /* Adjust the font size for even smaller screens */
+  }
 }
 
 #grades-section {
-  padding-top: 30px;
-  float: left;
+  position: absolute;
+  top: 95px;
+  right: 20px;
+  padding-top: 10px;
+  float: right;
   width: 38%;
-  background: #99d1e4;
-  height: 90%;
+  height: 35%;
   margin-right: 2%;
-  border-radius: 32px;
-};
+  margin-bottom: 20px; 
+  border-radius: 10px;
+  background-color: #99d1e4;
+  border: 4px solid #colors[secondary];
+  box-sizing: border-box;
+}
+
 
 #activity-list-section {
   padding-top: 30px;
@@ -77,19 +97,75 @@ li {
   width: 55%;
   height: 90%;
   margin-right: 5%;
-};
-
-#grades-title{
-  color: rgb(255, 255, 255);
-  font-weight: 500;
 }
+
+#grades-title {
+  color: #colors[text-primary];
+  margin-top: 1px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+#calendar-container {
+  margin-left: 5%;
+  float: left;
+  width: 40%;
+  position: relative; 
+  margin-top: -47vh; 
+}
+
+.react-calendar {
+  width: 100%;
+  max-width: 60vh;
+  max-height: 40vh; 
+  overflow-y: auto; 
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative; 
+  top: 0;
+}
+
+.react-calendar__navigation {
+  background-color: #eeeeee;
+  border-bottom: 1px solid #ddd;
+  border-radius: 6px 6px 0 0;
+}
+
+.react-calendar__navigation button {
+  font-size: 16px;
+  color: #333;
+}
+
+.react-calendar__month-view__days__day {
+  font-size: 14px;
+  width: 30px; 
+  height: 60px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &:hover {
+    background-color: #ddd; 
+  }
+}
+
+.calendar-due-date-item {
+  margin: 5px;
+  padding: 10px; 
+  background-color: #4CA64C;
+  color: #ffffff;
+  border-radius: 5px;
+}
+
 
 #launcher {
   position: fixed;
   bottom: 3vh;
   right: 11vw;
   color: #colors[primary];
-  background-color: darken(#colors[tertiary], 5%);
+  //background-color: darken(#colors[tertiary], 5%);
   font-weight: 550;
   width: 10vw;
   font-size: 2.75vh;
