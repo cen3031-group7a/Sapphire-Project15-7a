@@ -52,13 +52,12 @@ export const getPrograms = async () =>
     error: 'Programs could not be retrieved.',
   });
 
-export const postProgram = async (name, description) =>
+export const postProgram = async (title) =>
   makeRequest({
     method: POST,
     path: `${server}/programs`,
     data: {
-      name,
-      description,
+      title,
     },
     auth: true,
     error: 'Program could not be created.',
