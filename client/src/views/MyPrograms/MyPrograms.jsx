@@ -45,14 +45,17 @@ const MyPrograms = ({ history }) => {
 
   const handleEdit = () => {
     // Perform any necessary actions to edit the program
+    alert('TODO: Edit');
   };
 
   const handleShare = () => {
     // Perform any necessary actions to share the program
+    alert('TODO: Share');
   };
 
   const handleDelete = () => {
     // Perform any necessary actions to delete the program
+    alert('TODO: Delete');
   };
 
   const buttonRef = useRef(null);
@@ -73,7 +76,6 @@ const MyPrograms = ({ history }) => {
                   <h2>Create New Project</h2>
                   <label htmlFor='projectName'>Project Name:</label>
                   <input
-                    className='popup-input'
                     id='projectName'
                     type='text'
                     placeholder='Enter project name'
