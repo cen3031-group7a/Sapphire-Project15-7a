@@ -1,6 +1,6 @@
 import { message } from "antd"
 import React, { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import BlocklyCanvasPanel from "../../components/ActivityPanels/BlocklyCanvasPanel/BlocklyCanvasPanel"
 import NavBar from "../../components/NavBar/NavBar"
 import {
@@ -14,6 +14,7 @@ export default function BlocklyPage({ isSandbox }) {
   const [value] = useGlobalState("currUser")
   const [activity, setActivity] = useState({})
   const navigate = useNavigate()
+  const {projectName} = useParams()
 
   useEffect(() => {
     const setup = async () => {
@@ -75,6 +76,7 @@ export default function BlocklyPage({ isSandbox }) {
   return (
     <div className="container nav-padding">
       <NavBar />
+      <h1>{projectName}</h1>
       <div className="flex flex-row">
         <BlocklyCanvasPanel activity={activity} setActivity={setActivity} isSandbox={isSandbox} />
       </div>
