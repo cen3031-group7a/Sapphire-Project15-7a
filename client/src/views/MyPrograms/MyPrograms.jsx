@@ -43,6 +43,18 @@ const MyPrograms = ({ history }) => {
     history.push(`/sandbox/`); // Navigate to the sandbox route
   };
 
+  const handleEdit = () => {
+    // Perform any necessary actions to edit the program
+  };
+
+  const handleShare = () => {
+    // Perform any necessary actions to share the program
+  };
+
+  const handleDelete = () => {
+    // Perform any necessary actions to delete the program
+  };
+
   const buttonRef = useRef(null);
 
   return (
@@ -56,20 +68,20 @@ const MyPrograms = ({ history }) => {
           <button ref={buttonRef} onClick={handleCreateNew}>Create New</button>
           {
             isCreatingNew && (
-              <div className='popup' style={{ backgroundColor: 'lightblue', position: 'absolute', top: buttonRef.current.offsetTop, left: buttonRef.current.offsetLeft + buttonRef.current.offsetWidth + 10, padding: '20px', borderRadius: '8px', width: '300px' }}>
-                <div className='popup-inner' style={{ backgroundColor: 'white', padding: '20px', borderRadius: '8px' }}>
+              <div className='popup' style={{ top: buttonRef.current.offsetTop, left: buttonRef.current.offsetLeft + buttonRef.current.offsetWidth + 10 }}>
+                <div className='popup-inner'>
                   <h2>Create New Project</h2>
                   <label htmlFor='projectName'>Project Name:</label>
                   <input
+                    className='popup-input'
                     id='projectName'
                     type='text'
                     placeholder='Enter project name'
                     value={newProgramName}
                     onChange={(e) => setNewProgramName(e.target.value)}
-                    style={{ width: '100%', padding: '10px', marginBottom: '20px' }}
                   />
-                  <button onClick={handleCreateProgram} style={{ backgroundColor: 'blue', color: 'white', padding: '12px 20px', marginRight: '10px', borderRadius: '6px', border: 'none' }}>Create</button>
-                  <button onClick={() => setIsCreatingNew(false)} style={{ backgroundColor: 'blue', color: 'white', padding: '12px 20px', borderRadius: '6px', border: 'none' }}>Cancel</button>
+                  <button onClick={handleCreateProgram} className='create-button'>Create</button>
+                  <button onClick={() => setIsCreatingNew(false)} className='cancel-button'>Cancel</button>
                 </div>
               </div>
             )
