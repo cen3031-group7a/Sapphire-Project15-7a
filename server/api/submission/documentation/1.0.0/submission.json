@@ -648,6 +648,9 @@
               "activity_template": {
                 "type": "string"
               },
+              "due_dates": {
+                "type": "string"
+              },
               "created_by": {
                 "type": "string"
               },

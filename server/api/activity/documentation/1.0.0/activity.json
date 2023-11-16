@@ -886,6 +886,10 @@
           },
           "activity_template": {
             "type": "string"
+          },
+          "due_dates": {
+            "type": "string",
+            "format": "date"
           }
         }
       },
@@ -930,6 +934,10 @@
           },
           "activity_template": {
             "type": "string"
+          },
+          "due_dates": {
+            "type": "string",
+            "format": "date"
           },
           "created_by": {
             "type": "string"
