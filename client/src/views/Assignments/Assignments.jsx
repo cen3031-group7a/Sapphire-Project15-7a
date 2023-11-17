@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
 import { getStudentClassroom } from '../../Utils/requests';
+import{getSaves} from '../../Utils/requests';
 import Calendar from 'react-calendar';
 import './Assignments.less';
 
@@ -11,6 +12,7 @@ function Assignments() {
   const [activities, setActivities] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedActivity, setSelectedActivity] = useState(null);
+  //const [saves, setPastPrograms] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,17 +23,30 @@ function Assignments() {
           if (res.data.lesson_module) {
             setLessonModule(res.data.lesson_module);
           }
-
+  
           if (res.data.lesson_module.activities) {
             setActivities(res.data.lesson_module.activities);
           }
         } else {
           message.error(res.err);
         }
+
+        //const savesRes = await getSaves();
+        if (true) {
+          try {
+            //
+            if(true){
+              //console.log(savesRes.data);
+            }
+          } catch (error) {
+            console.error(error);
+          }
+        }
       } catch (error) {
         console.error(error);
       }
     };
+  
     fetchData();
   }, []);
 
@@ -41,7 +56,7 @@ function Assignments() {
     navigate('/workspace');
   };
 
-  const renderPrograms = () => {
+  const renderPerformance = () => {
     return (
       <div id='grades-section'>
         <h1 id='grades-title'>Performance and Grades</h1>
@@ -53,8 +68,16 @@ function Assignments() {
             </div>
           ))
         ) : (
-          <p>No programs available.</p>
+          <p>No grades available.</p>
         )}
+      </div>
+    );
+  };
+
+  const renderPastPrograms = () => {
+    return (
+      <div id='past-programs-section'>
+        <h1 id='past-programs-title'>Past Programs</h1>
       </div>
     );
   };
@@ -183,7 +206,8 @@ const tileContent = ({ date, view }) => {
           />
         </div>
           
-        {renderPrograms()}
+        {renderPerformance()}
+        {renderPastPrograms()}
         
         </div>
       </div> 
