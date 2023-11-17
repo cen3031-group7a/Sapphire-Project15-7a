@@ -77,13 +77,13 @@ function Assignments() {
                    style={{
                     flex: 1,
                     backgroundColor: isPastDue(activity.due_dates) ? '#FF3232' : '#4CA64C',
-                    padding: '5px',
-                    borderRadius: '5px',
-                    marginLeft: '9vh', 
-                    color: '#000000', 
-                    fontSize: '2vh', 
-                    border: '2px solid #000000', 
-                    marginBottom: '30px', 
+                    padding: '2px',
+                    borderRadius: '3px',
+                    marginLeft: '5vh',
+                    color: '#000',
+                    fontSize: '1.5vh',
+                    border: '2.5px solid #000',
+                    marginBottom: '10px',
                   }}
                   >
                     {`Due Date: ${formatDate(activity.due_dates)}`}
@@ -154,7 +154,7 @@ const tileContent = ({ date, view }) => {
                     onClick={() => handleSelection(activity)}
                   >
                     <li>{`${learningStandard.name}: Activity ${activity.number}`}</li>
-                    <span style={{ marginLeft: '10px' }}></span>
+                    
                     {renderDueDates([activity])} 
                   </div>
                 ))
