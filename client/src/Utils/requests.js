@@ -145,6 +145,18 @@ export const getStudents = async (code) =>
     error: 'Parent info could not be retrieved.',
   });
 
+  export const postParents = async (name, email, password)=> 
+  makeRequest({
+    method: POST,
+    path: `${server}/parents`,
+    data: {
+      name: name,
+      email: email,
+      password: password,
+    },
+    error: 'Failed to create account.',
+  })
+
 export const getStudent = async (id) =>
   makeRequest({
     method: GET,

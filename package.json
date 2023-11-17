@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@strapi/plugin-sentry": "^4.15.4"
+  }
+}
