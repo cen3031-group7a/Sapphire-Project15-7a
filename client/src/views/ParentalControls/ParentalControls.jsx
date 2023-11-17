@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import NavBar from '../../components/NavBar/NavBar';
 import { Link, useNavigate } from 'react-router-dom';
 import './ParentalControls.less';
-import { getParents, postParents } from '../../Utils/requests';
+import { getParent, getParents, postParents } from '../../Utils/requests';
+import { message } from 'antd';
 
 const CreateAccountModal = ({ closeModal, handleCreateAccount }) => {
   const [newName, setNewName] = useState('');
@@ -62,7 +63,7 @@ const ParentalControls = () => {
       if (res.data) {
         setParentList(res.data);
       } else {
-        //message.error(res.err);
+        message.error(res.err);
       }
     });
   }, []); // <-- empty dependency array to run only once
@@ -77,7 +78,7 @@ const ParentalControls = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/parentalcontrolspage');
+    handleLogin();
   };
 
   const openModal = () => {
@@ -107,6 +108,35 @@ const ParentalControls = () => {
       console.error('Error creating account:', error.message);
     }
   };
+
+  const handleLogin = async () => {
+    parentList.forEach((elem) => {
+      if(elem['email'] == email) {
+        const parent = getParent(elem['id']);
+        getParent(elem['id']).then((res) => {
+          if(res.data) {
+            // This doesn't work because Strapi doesn't include passwords in API responses.
+            // We have to do proper user authentication or rename the password field
+            // See https://strapi.io/blog/strapi-authentication-with-react 
+            if(res['password'] == password) {
+              // TODO: Set parent data in user session var
+              navigate('/parentalcontrolspage');
+            }
+            else {
+              message.error('Incorrect password.');
+              return;
+            }
+          } else {
+            message.error(res.err);
+            return;
+          }
+        })
+      }
+    });
+    message.error('No account with that email found.');
+  };
+
+
 
   return (
     <div className="container nav-padding">
@@ -150,7 +180,14 @@ const ParentalControls = () => {
             Create Account
           </button>
         </div>
+
+        <div>
+          <b>ParentList: </b>
+          {JSON.stringify(parentList)}
+        </div>
+
       </div>
+      
 
       {isModalOpen && (
         <CreateAccountModal closeModal={closeModal} handleCreateAccount={handleCreateAccount} />
