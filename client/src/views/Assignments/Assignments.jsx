@@ -101,9 +101,12 @@ function Assignments() {
         <ul>
           {saves.length > 0 ? (
             saves.map((save) => (
-              <div key={save.activity.id} id='list-item-wrapper' onClick={() => handleSaves(save.activity)}>
+              <div key={save.activity.id} onClick={() => handleSaves(save.activity)}>
                 <button className='past-program-button'>
                   {`${save.activity.StandardS}: ${save.activity.number}`}
+                  </button>
+                <button className='share-button' onClick={() => handleShare(save.activity)}>
+                  Share
                 </button>
               </div>
             ))
