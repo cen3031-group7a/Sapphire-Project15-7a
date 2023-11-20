@@ -146,6 +146,14 @@ export const getStudent = async (id) =>
     error: 'Student info could not be retrieved.',
   });
 
+  export const getStudentMe = async () =>
+  makeRequest({
+    method: GET,
+    path: `${server}/students/me`,
+    auth: true,
+    error: 'StudentMe info could not be retrieved.',
+  });
+
 export const postJoin = async (code, ids) =>
   makeRequest({
     method: POST,
@@ -274,6 +282,14 @@ export const getSave = async (id) =>
   makeRequest({
     method: GET,
     path: `${server}/saves/${id}`,
+    auth: true,
+    error: 'Save could not be retrieved.',
+  });
+//added in
+  export const getSaved = async () =>
+  makeRequest({
+    method: GET,
+    path: `${server}/saves`,
     auth: true,
     error: 'Save could not be retrieved.',
   });

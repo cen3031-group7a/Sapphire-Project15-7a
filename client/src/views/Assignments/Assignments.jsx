@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
 import { getStudentClassroom } from '../../Utils/requests';
-import{getSaves} from '../../Utils/requests';
+import{ getSaved } from '../../Utils/requests';
+import{ getStudentMe } from '../../Utils/requests';
 import Calendar from 'react-calendar';
 import './Assignments.less';
 
@@ -12,7 +13,7 @@ function Assignments() {
   const [activities, setActivities] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedActivity, setSelectedActivity] = useState(null);
-  //const [saves, setPastPrograms] = useState({});
+  const [saves, setSaves] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,24 +23,35 @@ function Assignments() {
         if (res.data) {
           if (res.data.lesson_module) {
             setLessonModule(res.data.lesson_module);
+            //console.log('Data', res.data.lesson_module);
           }
   
           if (res.data.lesson_module.activities) {
             setActivities(res.data.lesson_module.activities);
+            //console.log('actvities: ',res.data.lesson_module.activities[0]);
           }
         } else {
           message.error(res.err);
         }
+        
+        
+        const s = await getStudentMe();
+        const studentID = s.data.students[0].id;
+        console.log(studentID);
 
-        //const savesRes = await getSaves();
-        if (true) {
+        
+        //NEED TO ADD LOGIC WHERE STUDENT ID MATCHES ID IN SAVED.
+        
+        const savesRes = await getSaved();
+        const idOfStudentLoggedin = savesRes.data[0].student.id;
+        
+
+        if (studentID == idOfStudentLoggedin && savesRes.data) {
           try {
-            //
-            if(true){
-              //console.log(savesRes.data);
-            }
+           setSaves(savesRes.data);
+           console.log('savesRes1:',savesRes.data);
           } catch (error) {
-            console.error(error);
+            console.error(savesRes.error);
           }
         }
       } catch (error) {
@@ -55,6 +67,14 @@ function Assignments() {
     localStorage.setItem('my-activity', JSON.stringify(activity));
     navigate('/workspace');
   };
+
+
+  const handleSaves = (activity) =>{
+    console.log('Name: ', saves.activity);
+    activity.lesson_module_name = saves.activity;
+    localStorage.setItem('my-activity', JSON.stringify(activity));
+    navigate('/workspace');
+  }
 
   const renderPerformance = () => {
     return (
@@ -73,11 +93,26 @@ function Assignments() {
       </div>
     );
   };
-
   const renderPastPrograms = () => {
+  
     return (
       <div id='past-programs-section'>
         <h1 id='past-programs-title'>Past Programs</h1>
+        <ul>
+          {saves.length > 0 ? (
+            saves.map((save) => (
+              <div key={save.activity.id} id='list-item-wrapper' onClick={() => handleSaves(save.activity)}>
+                <button className='past-program-button'>
+                  {`${save.activity.StandardS}: ${save.activity.number}`}
+                </button>
+              </div>
+            ))
+          ) : (
+            <div>
+              <p>You have no past programs.</p>
+            </div>
+          )}
+        </ul>
       </div>
     );
   };
