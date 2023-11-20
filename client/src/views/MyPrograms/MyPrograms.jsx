@@ -46,9 +46,9 @@ const MyPrograms = ({ history }) => {
     }
   };
 
-  const handleEdit = () => {
+  const handleEdit = (programId) => {
     // Perform any necessary actions to edit the program
-    alert('TODO: Edit');
+    history.push(`/sandbox/${programId}`);
   };
 
   const handleShare = () => {
@@ -71,7 +71,7 @@ const MyPrograms = ({ history }) => {
 
   return (
     <div className='container nav-padding'>
-      <NavBar />
+      <NavBar isStudent={true} />
       <div id='activity-container'>
         <div id='header'>
           <div>My Programs</div>
@@ -102,7 +102,7 @@ const MyPrograms = ({ history }) => {
           <ul>
             {programs.map((program) => (
               <div className='program-container' key={program.id}>
-                <Link className='link' to={'/sandbox'}>
+                <Link className='link' to={`/program/${program.id}`}>
                   <li>{program.title}</li>
                 </Link>
                 <div className='dots-container'>
@@ -112,7 +112,7 @@ const MyPrograms = ({ history }) => {
                       <div className='menu'>
                         <h1>Actions for {program.title}:</h1>
                         <ul>
-                          <li onClick={handleEdit}>Edit</li>
+                          <li onClick={() => handleEdit(program.id)}>Edit</li>
                           <li onClick={handleShare}>Share</li>
                           <li onClick={() => handleDelete(program.id)}>Delete</li>
                         </ul>

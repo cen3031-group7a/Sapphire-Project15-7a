@@ -569,6 +569,38 @@
               }
             }
           },
+          "saves": {
+            "required": [
+              "id",
+              "workspace"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "activity": {
+                "type": "string"
+              },
+              "student": {
+                "type": "string"
+              },
+              "workspace": {
+                "type": "string"
+              },
+              "replay": {
+                "type": "object"
+              },
+              "session": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -581,6 +613,9 @@
             "type": "string"
           },
           "student": {
+            "type": "string"
+          },
+          "saves": {
             "type": "string"
           },
           "published_at": {

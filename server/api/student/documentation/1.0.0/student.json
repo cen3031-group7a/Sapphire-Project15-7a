@@ -801,6 +801,9 @@
                 "student": {
                   "type": "string"
                 },
+                "saves": {
+                  "type": "string"
+                },
                 "published_at": {
                   "type": "string"
                 },

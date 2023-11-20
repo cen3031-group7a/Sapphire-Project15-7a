@@ -69,6 +69,14 @@ const App = () => {
           }
         />
         <Route
+          path='/program/:id'
+          element={
+            <PrivateRoute>
+              <BlocklyPage isSandbox={false} />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path='/group-report'
           element={
             <PrivateRoute>
