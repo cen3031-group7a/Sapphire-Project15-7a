@@ -75,58 +75,7 @@ li {
   }
 }
 
-#grades-section {
-  position: absolute;
-  top: 95px;
-  right: 20px;
-  padding-top: 10px;
-  float: right;
-  width: 38%;
-  height: 35%;
-  margin-right: 2%;
-  margin-bottom: 20px; 
-  border-radius: 10px;
-  background-color: solid #colors[secondary];
-  border: 4px solid #colors[secondary];
-  box-sizing: border-box;
-}
-#past-programs-section {
-  position: absolute;
-  top: 420px;
-  right: 20px;
-  padding-top: 10px;
-  float: right;
-  width: 38%;
-  height: 35%;
-  margin-right: 2%;
-  margin-bottom: 20px; 
-  border-radius: 10px;
-  background-color: solid #colors[secondary];
-  border: 4px solid #colors[secondary];
-  box-sizing: border-box;
 
-}
-#past-programs-title {
-  color: #colors[text-primary];
-  margin-top: 1px;
-  font-weight: 500;
-  margin-bottom: 10px;
-}
-
-.past-program-button {
-  background-color: #3498db; 
-  color: #ffffff; 
-  padding: 50px 100px; 
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-bottom: 10px;
-
-  &:hover {
-    background-color: #2980b9; 
-  }
-}
 
 #activity-list-section {
   padding-top: 30px;
@@ -137,12 +86,6 @@ li {
   
 }
 
-#grades-title {
-  color: #colors[text-primary];
-  margin-top: 1px;
-  font-weight: 500;
-  margin-bottom: 10px;
-}
 
 #calendar-container {
   margin-left: 5%;
@@ -212,7 +155,6 @@ li {
   bottom: 3vh;
   right: 11vw;
   color: #colors[primary];
-  //background-color: darken(#colors[tertiary], 5%);
   font-weight: 550;
   width: 10vw;
   font-size: 2.75vh;
@@ -231,5 +173,93 @@ li {
     i {
       color: #colors[secondary];
     }
+  }
+}
+
+
+
+#grades-section {
+  position: absolute;
+  top: 35px;
+  right: 20px;
+  padding-top: 10px;
+  float: right;
+  width: 38%;
+  height: 30%; 
+  margin-right: 2%;
+  margin-bottom: 10px; 
+  border-radius: 10px;
+  background-color: solid #colors[secondary];
+  border: 4px solid #colors[secondary];
+  box-sizing: border-box;
+}
+
+#past-programs-section {
+  position: absolute;
+  top: 350px;
+  right: 20px;
+  padding-top: 10px;
+  float: right;
+  width: 38%;
+  height: 30%; 
+  margin-right: 2%;
+  margin-bottom: 20px; 
+  border-radius: 10px;
+  background-color: solid #colors[secondary];
+  border: 4px solid #colors[secondary];
+  box-sizing: border-box;
+}
+
+#shared-with-section {
+  position: absolute;
+  top: 660px; 
+  right: 20px;
+  padding-top: 10px;
+  float: right;
+  width: 38%;
+  height: 20%; 
+  margin-right: 2%;
+  margin-bottom: 20px; 
+  border-radius: 10px;
+  background-color: solid #colors[secondary];
+  border: 4px solid #colors[secondary];
+  box-sizing: border-box;
+}
+
+#grades-title,
+#past-programs-title,
+#shared-with-title {
+  color: #colors[text-primary];
+  margin-top: 1px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.shared-with-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 1px;
+  margin: 0 auto 1.2em auto;
+  width: 80%;
+  height: 10px;
+  font-size: 2.0vh;
+  font-weight: 500;
+  color:  #colors[primary];
+  line-height: 30px;
+}
+.past-program-button {
+  background-color: #3498db; 
+  color: #ffffff; 
+  padding: 70px 120px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 25px;
+  margin: 0 auto 10px auto; 
+  
+  &:hover {
+    background-color: #2980b9; 
   }
 }

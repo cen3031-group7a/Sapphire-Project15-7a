@@ -702,8 +702,11 @@
                 "activity": {
                   "type": "string"
                 },
-                "student": {
-                  "type": "string"
+                "students": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "workspace": {
                   "type": "string"

@@ -14,6 +14,8 @@ function Assignments() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedActivity, setSelectedActivity] = useState(null);
   const [saves, setSaves] = useState({});
+  const [sharedWith, setSharedWith] = useState([]);
+  const [idOfStudentLoggedin, setIdOfStudentLoggedin] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,31 +35,41 @@ function Assignments() {
         } else {
           message.error(res.err);
         }
-        
-        
         const s = await getStudentMe();
         const studentID = s.data.students[0].id;
-        console.log(studentID);
-
-        
-        //NEED TO ADD LOGIC WHERE STUDENT ID MATCHES ID IN SAVED.
-        
+        const studentName = s.data.students[0].name;
+    
+        console.log('MY ID', studentID);
+    
         const savesRes = await getSaved();
-        const idOfStudentLoggedin = savesRes.data[0].student.id;
-        
-
-        if (studentID == idOfStudentLoggedin && savesRes.data) {
+        console.log('Saves:', savesRes);
+    
+        const savesForLoggedInStudent = savesRes.data.filter((save) => {
+          return save.students.some((student) => student.id === studentID);
+        });
+    
+        console.log('Saves for logged-in student:', savesForLoggedInStudent);
+    
+        const allStudentsInProjects = savesRes.data.flatMap((save) =>
+          save.students.map((student) => student.name)
+        );
+    
+        const uniqueStudentsInProjects = [...new Set(allStudentsInProjects)];
+    
+        setSharedWith(uniqueStudentsInProjects.filter((name) => name !== studentName));        setIdOfStudentLoggedin(studentID);
+        console.log(idOfStudentLoggedin);
+        if (savesForLoggedInStudent) {
           try {
-           setSaves(savesRes.data);
-           console.log('savesRes1:',savesRes.data);
+            setSaves(savesForLoggedInStudent);
           } catch (error) {
-            console.error(savesRes.error);
+            console.error(error);
           }
         }
       } catch (error) {
         console.error(error);
       }
     };
+    
   
     fetchData();
   }, []);
@@ -67,6 +79,23 @@ function Assignments() {
     localStorage.setItem('my-activity', JSON.stringify(activity));
     navigate('/workspace');
   };
+
+const renderSharedWith = () => {
+  return (
+    <div id='shared-with-section'>
+      <h1 id='shared-with-title'>Shared Projects With:</h1>
+      {sharedWith.length > 0 ? (
+        sharedWith.map((shared) => (
+          <div key={shared} className='shared-with-item'>
+            {`${shared}`}
+          </div>
+        ))
+      ) : (
+        <p>You have not shared projects with anyone.</p>
+      )}
+    </div>
+  );
+};
 
 
   const handleSaves = (activity) =>{
@@ -105,9 +134,6 @@ function Assignments() {
                 <button className='past-program-button'>
                   {`${save.activity.StandardS}: ${save.activity.number}`}
                   </button>
-                <button className='share-button' onClick={() => handleShare(save.activity)}>
-                  Share
-                </button>
               </div>
             ))
           ) : (
@@ -246,6 +272,7 @@ const tileContent = ({ date, view }) => {
           
         {renderPerformance()}
         {renderPastPrograms()}
+        {renderSharedWith()}
         
         </div>
       </div> 
