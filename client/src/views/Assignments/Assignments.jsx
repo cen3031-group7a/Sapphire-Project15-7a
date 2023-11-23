@@ -6,6 +6,7 @@ import { getStudentClassroom } from '../../Utils/requests';
 import{ getSaved } from '../../Utils/requests';
 import{ getStudentMe } from '../../Utils/requests';
 import Calendar from 'react-calendar';
+import GradesComponent from '../Grades/Grades';
 import './Assignments.less';
 
 function Assignments() {
@@ -106,21 +107,7 @@ const renderSharedWith = () => {
   }
 
   const renderPerformance = () => {
-    return (
-      <div id='grades-section'>
-        <h1 id='grades-title'>Performance and Grades</h1>
-        {learningStandard.programs ? (
-          learningStandard.programs.map((program) => (
-            <div key={program.id} className='program-section'>
-              <div className='program-name'>{program.name}</div>
-              <div className='program-grade'>{program.grade}</div>
-            </div>
-          ))
-        ) : (
-          <p>No grades available.</p>
-        )}
-      </div>
-    );
+    return <GradesComponent learningStandard={learningStandard} />;
   };
   const renderPastPrograms = () => {
   
@@ -229,51 +216,55 @@ const tileContent = ({ date, view }) => {
         <div id='header'>
           <div>Select your Activity</div>
         </div>
-        <div id='activity-list-section'>
-          <ul>
-            {learningStandard.activities ? (
-              learningStandard.activities
-                .sort((activity1, activity2) => activity1.number - activity2.number)
-                .map((activity) => (
-                  <div
-                    key={activity.id}
-                    id='list-item-wrapper'
-                    onClick={() => handleSelection(activity)}
-                  >
-                    <li>{`${learningStandard.name}: Activity ${activity.number}`}</li>
-                    
-                    {renderDueDates([activity])} 
-                  </div>
-                ))
-            ) : (
+        <div id='classroom-container'>
+          <div id='activity-calendar-container'>
+          <div id='activity-list-section'>
+            <ul>
+              {learningStandard.activities ? (
+                learningStandard.activities
+                  .sort((activity1, activity2) => activity1.number - activity2.number)
+                  .map((activity) => (
+                    <div
+                      key={activity.id}
+                      id='list-item-wrapper'
+                      onClick={() => handleSelection(activity)}
+                    >
+                      <li>{`${learningStandard.name}: Activity ${activity.number}`}</li>
+                      
+                      {renderDueDates([activity])} 
+                    </div>
+                  ))
+              ) : (
+                <div>
+                  <p>There is currently no active learning standard set.</p>
+                  <p>
+                    When your classroom manager selects one, it will appear here.
+                  </p>
+                </div>
+              )}
+            </ul>
+            </div>
+            <div id='calendar-container'>
+            <h2>Selected Date: {selectedDate && selectedDate.toLocaleDateString()}</h2>
+            {selectedActivity && (
               <div>
-                <p>There is currently no active learning standard set.</p>
-                <p>
-                  When your classroom manager selects one, it will appear here.
-                </p>
+                <h2>Activity Due on Selected Date: {`${learningStandard.name}: ${selectedActivity.number}`}</h2>
               </div>
             )}
-          </ul>
-          </div>
-          <div id='calendar-container'>
-          <h2>Selected Date: {selectedDate && selectedDate.toLocaleDateString()}</h2>
-          {selectedActivity && (
-            <div>
-              <h2>Activity Due on Selected Date: {`${learningStandard.name}: ${selectedActivity.number}`}</h2>
-            </div>
-          )}
 
-          <Calendar
-            onChange={handleDateChange}
-            value={selectedDate}
-            tileContent={tileContent}
-          />
+            <Calendar
+              onChange={handleDateChange}
+              value={selectedDate}
+              tileContent={tileContent}
+            />
+          </div>
+          </div>
+           <div id='grades-programs-container'> 
+            {renderPerformance()}
+            {renderPastPrograms()}
+            {renderSharedWith()}
+          </div>
         </div>
-          
-        {renderPerformance()}
-        {renderPastPrograms()}
-        {renderSharedWith()}
-        
         </div>
       </div> 
   );
