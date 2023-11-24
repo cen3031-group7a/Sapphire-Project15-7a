@@ -2,6 +2,7 @@ import React from 'react';
 import './Grades.less';
 
 const GradesComponent = ({ learningStandard }) => {
+    console.log(learningStandard);
     return (
         <div id='grades-section'>
         <h1 id='grades-title'>Performance and Grades</h1>

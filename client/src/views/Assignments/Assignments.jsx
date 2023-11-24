@@ -17,6 +17,7 @@ function Assignments() {
   const [saves, setSaves] = useState({});
   const [sharedWith, setSharedWith] = useState([]);
   const [idOfStudentLoggedin, setIdOfStudentLoggedin] = useState(null);
+  const [activeTab, setActiveTab] = useState('tab1');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -151,13 +152,13 @@ const renderSharedWith = () => {
                    style={{
                     flex: 1,
                     backgroundColor: isPastDue(activity.due_dates) ? '#FF3232' : '#4CA64C',
-                    padding: '2px',
-                    borderRadius: '3px',
+                    padding: '3px',
+                    borderRadius: '10px',
                     marginLeft: '5vh',
-                    color: '#000',
+                    color: '#414141',
                     fontSize: '1.5vh',
-                    border: '2.5px solid #000',
-                    marginBottom: '10px',
+                    border: '1.5px solid #414141',
+                    // marginBottom: '10px',
                   }}
                   >
                     {`Due Date: ${formatDate(activity.due_dates)}`}
@@ -218,55 +219,69 @@ const tileContent = ({ date, view }) => {
         </div>
         <div id='classroom-container'>
           <div id='activity-calendar-container'>
-          <div id='activity-list-section'>
-            <ul>
-              {learningStandard.activities ? (
-                learningStandard.activities
-                  .sort((activity1, activity2) => activity1.number - activity2.number)
-                  .map((activity) => (
-                    <div
-                      key={activity.id}
-                      id='list-item-wrapper'
-                      onClick={() => handleSelection(activity)}
-                    >
-                      <li>{`${learningStandard.name}: Activity ${activity.number}`}</li>
-                      
-                      {renderDueDates([activity])} 
-                    </div>
-                  ))
-              ) : (
-                <div>
-                  <p>There is currently no active learning standard set.</p>
-                  <p>
-                    When your classroom manager selects one, it will appear here.
-                  </p>
-                </div>
-              )}
-            </ul>
+            <div id='activity-list-section'>
+              <ul>
+                {learningStandard.activities ? (
+                  learningStandard.activities
+                    .sort((activity1, activity2) => activity1.number - activity2.number)
+                    .map((activity) => (
+                      <div
+                        key={activity.id}
+                        id='list-item-wrapper'
+                        onClick={() => handleSelection(activity)}
+                      >
+                        <li>{`${learningStandard.name}: Activity ${activity.number}`}</li>
+                        
+                        {renderDueDates([activity])} 
+                      </div>
+                    ))
+                ) : (
+                  <div>
+                    <p>There is currently no active learning standard set.</p>
+                    <p>
+                      When your classroom manager selects one, it will appear here.
+                    </p>
+                  </div>
+                )}
+              </ul>
             </div>
             <div id='calendar-container'>
-            <h2>Selected Date: {selectedDate && selectedDate.toLocaleDateString()}</h2>
-            {selectedActivity && (
-              <div>
-                <h2>Activity Due on Selected Date: {`${learningStandard.name}: ${selectedActivity.number}`}</h2>
+              <div id='calendar-textbox'>
+                <h2 style={{ height: '50%', margin: '0px'}}>Selected Date: {selectedDate && selectedDate.toLocaleDateString()}</h2>
+                {selectedActivity && (
+                    <h2 style={{ height: '50%', margin: '0px'}}>Activity Due on Selected Date: {`${learningStandard.name}: ${selectedActivity.number}`}</h2>
+                )}
               </div>
-            )}
 
-            <Calendar
-              onChange={handleDateChange}
-              value={selectedDate}
-              tileContent={tileContent}
-            />
+              <Calendar
+                onChange={handleDateChange}
+                value={selectedDate}
+                tileContent={tileContent}
+              />
+            </div>
           </div>
+          <div id='grades-programs-container'> 
+            <div id='tab-taskbar'>
+              <button className={activeTab === 'tab1' ? 'active-tab' : ''} onClick={() => setActiveTab('tab1')}>
+                Performance and Grades
+              </button>
+              <button className={activeTab === 'tab2' ? 'active-tab' : ''} onClick={() => setActiveTab('tab2')}>
+                Past Programs
+              </button>
+              <button className={activeTab === 'tab3' ? 'active-tab' : ''} onClick={() => setActiveTab('tab3')}>
+                  Shared With
+              </button>
           </div>
-           <div id='grades-programs-container'> 
-            {renderPerformance()}
-            {renderPastPrograms()}
-            {renderSharedWith()}
+
+            <div style={{ height: '90%'}}>
+              {activeTab === 'tab1' && <div className="content" style={{height: '100%'}}>{renderPerformance()}</div>}
+              {activeTab === 'tab2' && <div className="content" style={{height: '100%'}}>{renderPastPrograms()}</div>}
+              {activeTab === 'tab3' && <div className="content" style={{height: '100%'}}>{renderSharedWith()}</div>}
+            </div>
           </div>
         </div>
-        </div>
-      </div> 
+      </div>
+    </div> 
   );
 }
 
