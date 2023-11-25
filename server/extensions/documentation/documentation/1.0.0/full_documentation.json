@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "11/15/2023 2:54:37 AM"
+    "x-generation-date": "11/25/2023 9:10:04 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -12799,6 +12799,24 @@
                 "last_logged_in": {
                   "type": "string"
                 },
+                "permissionone_viewcoursematerials": {
+                  "type": "boolean"
+                },
+                "permissiontwo_submitlateassignments": {
+                  "type": "boolean"
+                },
+                "permissionthree_discussionparticipation": {
+                  "type": "boolean"
+                },
+                "permissionfour_timelimits": {
+                  "type": "boolean"
+                },
+                "permissionfive_accessresources": {
+                  "type": "boolean"
+                },
+                "permissionsix_receivenotifications": {
+                  "type": "boolean"
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -13671,6 +13689,24 @@
               "last_logged_in": {
                 "type": "string"
               },
+              "permissionone_viewcoursematerials": {
+                "type": "boolean"
+              },
+              "permissiontwo_submitlateassignments": {
+                "type": "boolean"
+              },
+              "permissionthree_discussionparticipation": {
+                "type": "boolean"
+              },
+              "permissionfour_timelimits": {
+                "type": "boolean"
+              },
+              "permissionfive_accessresources": {
+                "type": "boolean"
+              },
+              "permissionsix_receivenotifications": {
+                "type": "boolean"
+              },
               "created_by": {
                 "type": "string"
               },
@@ -13807,6 +13843,24 @@
               },
               "last_logged_in": {
                 "type": "string"
+              },
+              "permissionone_viewcoursematerials": {
+                "type": "boolean"
+              },
+              "permissiontwo_submitlateassignments": {
+                "type": "boolean"
+              },
+              "permissionthree_discussionparticipation": {
+                "type": "boolean"
+              },
+              "permissionfour_timelimits": {
+                "type": "boolean"
+              },
+              "permissionfive_accessresources": {
+                "type": "boolean"
+              },
+              "permissionsix_receivenotifications": {
+                "type": "boolean"
               },
               "created_by": {
                 "type": "string"
@@ -14285,6 +14339,24 @@
                 "last_logged_in": {
                   "type": "string"
                 },
+                "permissionone_viewcoursematerials": {
+                  "type": "boolean"
+                },
+                "permissiontwo_submitlateassignments": {
+                  "type": "boolean"
+                },
+                "permissionthree_discussionparticipation": {
+                  "type": "boolean"
+                },
+                "permissionfour_timelimits": {
+                  "type": "boolean"
+                },
+                "permissionfive_accessresources": {
+                  "type": "boolean"
+                },
+                "permissionsix_receivenotifications": {
+                  "type": "boolean"
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -14674,6 +14746,30 @@
           "last_logged_in": {
             "type": "string",
             "format": "date-time"
+          },
+          "permissionone_viewcoursematerials": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissiontwo_submitlateassignments": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionthree_discussionparticipation": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionfour_timelimits": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionfive_accessresources": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionsix_receivenotifications": {
+            "type": "boolean",
+            "default": false
           }
         }
       },
@@ -14704,6 +14800,30 @@
           "last_logged_in": {
             "type": "string",
             "format": "date-time"
+          },
+          "permissionone_viewcoursematerials": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissiontwo_submitlateassignments": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionthree_discussionparticipation": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionfour_timelimits": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionfive_accessresources": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionsix_receivenotifications": {
+            "type": "boolean",
+            "default": false
           },
           "created_by": {
             "type": "string"
