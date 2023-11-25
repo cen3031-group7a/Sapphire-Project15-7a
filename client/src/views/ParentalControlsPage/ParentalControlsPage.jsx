@@ -38,6 +38,11 @@ export default function ParentalControlsPage() {
     setCanChange(!canChange);
   }
 
+  const [learningStandard, setLessonModule] = useState({});
+  const renderPerformance = () => {
+    return <GradesComponent learningStandard={learningStandard} />;
+  }
+
   const [isChecked, setChecked] = useState(false);
   const [isCheckedViewMaterials, setCheckedViewMaterials] = useState(false);
   const [isCheckedSubmitAssignments, setCheckedSubmitAssignments] = useState(false);
@@ -68,12 +73,9 @@ export default function ParentalControlsPage() {
           </div>
 
           {/* Student Grades Section */}
-          <div style={columnStyle}>
-            <h2>Student Grades</h2>
-              {/* Add student grades content here */}
-              <div id='grades-programs-container'> 
+          <div style={columnStyle} id='grades-programs-container'> 
+              {renderPerformance()}
             </div>
-          </div>
 
           {/* Student Permissions Section */}
           <div style={columnStyle}>
