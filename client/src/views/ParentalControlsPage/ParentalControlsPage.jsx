@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
+import { updatePermissions } from '../../Utils/requests';
 
 export default function ParentalControlsPage() {
   const listStyle = {
@@ -56,10 +57,9 @@ export default function ParentalControlsPage() {
           </div>
 
           {/* Student Grades Section */}
-          <div style={columnStyle}>
-            <h2>Student Grades</h2>
-              {/* Add student grades content here */}
-          </div>
+          <div style={columnStyle} id='grades-programs-container'> 
+              {/*{renderPerformance()}*/}
+            </div>
 
           {/* Student Permissions Section */}
           <div style={columnStyle}>
@@ -74,7 +74,7 @@ export default function ParentalControlsPage() {
             </ul>
             <div id='add-button' style={buttonStyle}>
               <button onClick={handleClick}>Edit Permissions</button> 
-              {/*when clicked will take to restrictions page where there can be various on/off switches for different permissions*/}
+              {/*can only toggle the switches when this button is clicked, second time is cliked changed are saved*/}
             </div>
           </div>
         </div>

@@ -707,3 +707,14 @@ export const getClassroomWorkspace = async (id) =>
     auth: true,
     error: 'Unable to retrive classroom workspaces',
   });
+
+export const updatePermissions = async (data) => 
+  makeRequest({
+    method: PUT,
+    path:`${server}/parentalcontrolspage/${id}`,
+    auth: true,
+    data: {
+      value,
+    },
+    error: 'Failed to update permissions',
+  });
