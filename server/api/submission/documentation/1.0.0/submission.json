@@ -651,6 +651,9 @@
               "due_dates": {
                 "type": "string"
               },
+              "grade": {
+                "type": "string"
+              },
               "created_by": {
                 "type": "string"
               },
