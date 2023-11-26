@@ -132,8 +132,8 @@ const ParentalControls = () => {
 
     postUser(body)
       .then((response) => {
-        setUserSession(response.data.jwt, JSON.stringify(response.data.user));
         if (response.data.user.role.name === 'Parent') {
+          setUserSession(response.data.jwt, JSON.stringify(response.data.user));
           navigate('/parentalcontrolspage');
           console.log(JSON.stringify(response.data.user));
         } else {
