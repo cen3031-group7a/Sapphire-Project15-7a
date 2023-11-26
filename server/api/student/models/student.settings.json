@@ -34,6 +34,30 @@
     },
     "last_logged_in": {
       "type": "datetime"
+    },
+    "permissionone_viewcoursematerials": {
+      "type": "boolean",
+      "default": false
+    },
+    "permissiontwo_submitlateassignments": {
+      "type": "boolean",
+      "default": false
+    },
+    "permissionthree_discussionparticipation": {
+      "type": "boolean",
+      "default": false
+    },
+    "permissionfour_timelimits": {
+      "type": "boolean",
+      "default": false
+    },
+    "permissionfive_accessresources": {
+      "type": "boolean",
+      "default": false
+    },
+    "permissionsix_receivenotifications": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
