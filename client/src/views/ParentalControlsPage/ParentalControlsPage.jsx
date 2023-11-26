@@ -4,6 +4,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import ToggleSwitch from "../../components/ToggleSwitch/ToggleSwitch"; 
 import './ParentalControlsPage.css';
 import GradesComponent from '../Grades/Grades';
+import { updatePermissions } from '../../Utils/requests';
 
 export default function ParentalControlsPage() {
   const listStyle = {

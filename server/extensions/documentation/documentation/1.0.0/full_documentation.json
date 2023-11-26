@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "11/08/2023 12:37:26 AM"
+    "x-generation-date": "11/26/2023 10:30:23 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -12294,6 +12294,24 @@
                     "type": "string"
                   }
                 },
+                "permissionone_viewcoursematerials": {
+                  "type": "boolean"
+                },
+                "permissiontwo_submitlateassignments": {
+                  "type": "boolean"
+                },
+                "permissionthree_discussionparticipation": {
+                  "type": "boolean"
+                },
+                "permissionfour_timelimits": {
+                  "type": "boolean"
+                },
+                "permissionfive_accessresources": {
+                  "type": "boolean"
+                },
+                "permissionsix_receivenotifications": {
+                  "type": "boolean"
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -13220,6 +13238,24 @@
                   "type": "string"
                 }
               },
+              "permissionone_viewcoursematerials": {
+                "type": "boolean"
+              },
+              "permissiontwo_submitlateassignments": {
+                "type": "boolean"
+              },
+              "permissionthree_discussionparticipation": {
+                "type": "boolean"
+              },
+              "permissionfour_timelimits": {
+                "type": "boolean"
+              },
+              "permissionfive_accessresources": {
+                "type": "boolean"
+              },
+              "permissionsix_receivenotifications": {
+                "type": "boolean"
+              },
               "created_by": {
                 "type": "string"
               },
@@ -13703,6 +13739,24 @@
                     "type": "string"
                   }
                 },
+                "permissionone_viewcoursematerials": {
+                  "type": "boolean"
+                },
+                "permissiontwo_submitlateassignments": {
+                  "type": "boolean"
+                },
+                "permissionthree_discussionparticipation": {
+                  "type": "boolean"
+                },
+                "permissionfour_timelimits": {
+                  "type": "boolean"
+                },
+                "permissionfive_accessresources": {
+                  "type": "boolean"
+                },
+                "permissionsix_receivenotifications": {
+                  "type": "boolean"
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -14126,6 +14180,30 @@
                 }
               }
             }
+          },
+          "permissionone_viewcoursematerials": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissiontwo_submitlateassignments": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionthree_discussionparticipation": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionfour_timelimits": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionfive_accessresources": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionsix_receivenotifications": {
+            "type": "boolean",
+            "default": false
           }
         }
       },
@@ -14162,6 +14240,30 @@
             "items": {
               "type": "string"
             }
+          },
+          "permissionone_viewcoursematerials": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissiontwo_submitlateassignments": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionthree_discussionparticipation": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionfour_timelimits": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionfive_accessresources": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionsix_receivenotifications": {
+            "type": "boolean",
+            "default": false
           },
           "created_by": {
             "type": "string"
