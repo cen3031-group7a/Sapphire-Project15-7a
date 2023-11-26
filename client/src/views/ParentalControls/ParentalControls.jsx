@@ -3,6 +3,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import { Link, useNavigate } from 'react-router-dom';
 import './ParentalControls.less';
 import { getParent, getParents, postParents, getStudentMe } from '../../Utils/requests';
+import { postUser, setUserSession } from '../../Utils/AuthRequests';
 import { message } from 'antd';
 
 const CreateAccountModal = ({ closeModal, handleCreateAccount, currentStudent }) => {
@@ -127,30 +128,21 @@ const ParentalControls = () => {
   };
 
   const handleLogin = async () => {
-    parentList.forEach((elem) => {
-      if(elem['email'] == email) {
-        const parent = getParent(elem['id']);
-        getParent(elem['id']).then((res) => {
-          if(res.data) {
-            // This doesn't work because Strapi doesn't include passwords in API responses.
-            // We have to do proper user authentication or rename the password field
-            // See https://strapi.io/blog/strapi-authentication-with-react 
-            if(res['password'] == password) {
-              // TODO: Set parent data in user session var
-              navigate('/parentalcontrolspage');
-            }
-            else {
-              message.error('Incorrect password.');
-              return;
-            }
-          } else {
-            message.error(res.err);
-            return;
-          }
-        })
-      }
-    });
-    message.error('No account with that email found.');
+    let body = { identifier: email, password: password };
+
+    postUser(body)
+      .then((response) => {
+        setUserSession(response.data.jwt, JSON.stringify(response.data.user));
+        if (response.data.user.role.name === 'Parent') {
+          navigate('/parentalcontrolspage');
+          console.log(JSON.stringify(response.data.user));
+        } else {
+          message.error('User is not a parent');
+        }
+      })
+      .catch((error) => {
+        message.error('Login failed. Please input a valid email and password.');
+      });
   };
 
 
