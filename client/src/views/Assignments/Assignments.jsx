@@ -52,7 +52,7 @@ function Assignments() {
     
         console.log('Saves for logged-in student:', savesForLoggedInStudent);
     
-        const allStudentsInProjects = savesRes.data.flatMap((save) =>
+        const allStudentsInProjects = savesForLoggedInStudent.flatMap((save) =>
           save.students.map((student) => student.name)
         );
     
