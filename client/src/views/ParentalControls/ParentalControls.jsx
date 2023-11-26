@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import NavBar from '../../components/NavBar/NavBar';
 import { Link, useNavigate } from 'react-router-dom';
 import './ParentalControls.less';
-import { getParent, getParents, postParents } from '../../Utils/requests';
+import { getStudent, getParent, getParents, postParents } from '../../Utils/requests';
 import { message } from 'antd';
 
-const CreateAccountModal = ({ closeModal, handleCreateAccount }) => {
+const CreateAccountModal = ({ closeModal, handleCreateAccount, currentStudent }) => {
   const [newName, setNewName] = useState('');
   const [newEmail, setNewEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -24,7 +24,7 @@ const CreateAccountModal = ({ closeModal, handleCreateAccount }) => {
 
   const handleCreate = () => {
     // Add any validation logic here before calling the create parent function
-    handleCreateAccount(newName, newEmail, newPassword);
+    handleCreateAccount(newName, newEmail, newPassword, currentStudent);
     closeModal();
   };
 
@@ -57,6 +57,7 @@ const ParentalControls = () => {
   const [password, setPassword] = useState('');
   const [parentList, setParentList] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentStudent, setCurrentStudent] = useState('');
 
   useEffect(() => {
     getParents().then((res) => {
@@ -89,23 +90,41 @@ const ParentalControls = () => {
     setIsModalOpen(false);
   };
 
-  const handleCreateAccount = async (newName, newEmail, newPassword) => {
+  const studentId = localStorage.getItem('student')
+
+  useEffect(() => {
+    // Fetch the current student information here and update the state
+    getStudent().then((res) => {
+      if (res.data) {
+        setCurrentStudent(res.data);
+      } else {
+        message.error(res.err);
+      }
+    });
+  }, []);
+
+  const handleCreateAccount = async (newName, newEmail, newPassword, currentStudent) => {
     try {
       // Make a POST request to the Strapi API endpoint for creating a new user
-      const { data, err } = await postParents(newName, newEmail, newPassword);
-      console.log(data);
-      // Check if the request was successful (status code 2xx)
-      if (!err) {
-        console.log('Account created successfully');
-        history.push(`/sandbox/${data.id}`);
-        // Optionally, you can do something after successfully creating the account
-      } else {
-        // Handle the case when the request was not successful (status code is not 2xx)
-        console.error('Failed to create account:', err);
-      }
+      const { data } = await postParents(newName, newEmail, newPassword, currentStudent);
+      // Log success message
+      message.log('Account created successfully');
+      // Redirect to the new user's sandbox
+      history.push(`/sandbox/${data.id}`);
+      
+      // Optionally, you can do something after successfully creating the account
     } catch (error) {
-      // Handle any errors that occurred during the fetch
-      console.error('Error creating account:', error.message);
+      // Handle errors
+      if (error.response) {
+        // The request was made, but the server responded with an error status code
+        message.error('Failed to create account:', error.response.data.message);
+      } else if (error.request) {
+        // The request was made, but no response was received
+        message.error('No response received. Please try again later.');
+      } else {
+        // Something happened in setting up the request that triggered an error
+        console.log('Account created successfully');
+      }
     }
   };
 
@@ -182,8 +201,13 @@ const ParentalControls = () => {
         </div>
 
         <div>
-          <b>ParentList: </b>
+          <b>Parent List: </b>
           {JSON.stringify(parentList)}
+        </div>
+
+        <div>
+          <b>Current Student: </b>
+          {JSON.stringify(currentStudent)}
         </div>
 
       </div>
