@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import NavBar from '../../components/NavBar/NavBar';
 import { Link, useNavigate } from 'react-router-dom';
 import './ParentalControls.less';
-import { getStudent, getParent, getParents, postParents } from '../../Utils/requests';
+import { getParent, getParents, postParents, getStudentMe } from '../../Utils/requests';
 import { message } from 'antd';
 
 const CreateAccountModal = ({ closeModal, handleCreateAccount, currentStudent }) => {
@@ -90,11 +90,9 @@ const ParentalControls = () => {
     setIsModalOpen(false);
   };
 
-  const studentId = localStorage.getItem('student')
-
   useEffect(() => {
     // Fetch the current student information here and update the state
-    getStudent().then((res) => {
+    getStudentMe().then((res) => {
       if (res.data) {
         setCurrentStudent(res.data);
       } else {

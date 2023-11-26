@@ -138,6 +138,14 @@ export const getStudents = async (code) =>
     error: 'Student info could not be retrieved.',
   });
 
+  export const getStudentMe = async () =>
+  makeRequest({
+    method: GET,
+    path: `${server}/students/me`,
+    auth: true,
+    error: 'StudentMe info could not be retrieved.',
+  });
+
   export const getParents = async () =>
   makeRequest({
     method: GET,
@@ -150,13 +158,6 @@ export const getStudents = async (code) =>
     method: GET,
     path: `${server}/parents/${id}`,
     error: 'Parent info could not be retrieved.',
-  });
-
-  export const getStudent2 = async () =>
-  makeRequest({
-    method: GET,
-    path: `${server}/students`,
-    error: 'Student info could not be retrieved.',
   });
 
   export const postParents = async (name, email, password, student)=> 
