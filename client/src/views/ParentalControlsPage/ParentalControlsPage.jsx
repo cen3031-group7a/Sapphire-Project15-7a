@@ -38,6 +38,12 @@ export default function ParentalControlsPage() {
   const handleClick = (e) => {
     setCanChange(!canChange);
     //if canChange is now false (just clicked on save) then update the student's permissions statuses
+    updatePermissions("permissionone_viewcoursematerials", isCheckedViewMaterials);
+    updatePermissions("permissiontwo_submitlateassignments", isCheckedSubmitAssignments);
+    updatePermissions("permissionthree_discussionparticipation", isCheckedParticipateDiscussions);
+    updatePermissions("permissionfour_timelimits", isCheckedToggleTimeLimits);
+    updatePermissions("permissionfive_accessresources", isCheckedAccessResources);
+    updatePermissions("permissionsix_receivenotifications", isCheckedReceiveNotifications);
   }
 
   const [learningStandard, setLessonModule] = useState({});
@@ -47,6 +53,7 @@ export default function ParentalControlsPage() {
 
   const [isChecked, setChecked] = useState(false); 
   const {permissionone} = getPermissions("permissionone_viewcoursematerials");
+  console.log(permissionone);
   const [isCheckedViewMaterials, setCheckedViewMaterials] = useState(permissionone); //replaced automatic falses with actual getPermissions status
 
   const {permissiontwo} = getPermissions("permissiontwo_submitlateassignments");
