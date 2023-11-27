@@ -1,14 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
-<<<<<<< HEAD
-import ToggleSwitch from "../../components/ToggleSwitch/ToggleSwitch"; 
+import { getStudentClassroom } from '../../Utils/requests';
+import ToggleSwitch from "../../components/ToggleSwitch/ToggleSwitch";
 import './ParentalControlsPage.css';
 import GradesComponent from '../Grades/Grades';
-import { updatePermissions, getPermissions } from '../../Utils/requests';
-import { getStudentClassroom } from '../../Utils/requests';
+import { updatePermissions, getPermissions, getPrograms } from '../../Utils/requests';
 
 export default function ParentalControlsPage() {
+  const [canChange, setCanChange] = useState(false);
+  const [programs, setPrograms] = useState([]);
+
+  useEffect(() => {
+    const fetchPrograms = async () => {
+      const { data, err } = await getPrograms();
+      if (!err) {
+        setPrograms(data);
+      } else {
+        console.error('Error fetching programs:', err);
+      }
+    };
+
+    fetchPrograms();
+  }, [])
+
   const [learningStandard, setLessonModule] = useState({});
   useEffect(() => {
     const fetchData = async () => {
@@ -45,31 +60,7 @@ export default function ParentalControlsPage() {
     };
     fetchData();
   }, []);
-=======
-
-import ToggleSwitch from "../../components/ToggleSwitch/ToggleSwitch";
-import './ParentalControlsPage.css';
-import GradesComponent from '../Grades/Grades';
-import { updatePermissions, getPermissions, getPrograms } from '../../Utils/requests';
-
-export default function ParentalControlsPage() {
-  const [canChange, setCanChange] = useState(false);
-  const [programs, setPrograms] = useState([]);
-
-  useEffect(() => {
-    const fetchPrograms = async () => {
-      const { data, err } = await getPrograms();
-      if (!err) {
-        setPrograms(data);
-      } else {
-        console.error('Error fetching programs:', err);
-      }
-    };
-
-    fetchPrograms();
-  }, [])
->>>>>>> 7bd83a26316cf0efb327e3f5f2e4c6c0457540e9
-
+  
   const listStyle = {
     textAlign: 'left',
     justifyContent: 'center',
@@ -116,13 +107,11 @@ export default function ParentalControlsPage() {
     return <GradesComponent learningStandard={learningStandard} />;
   }
 
-<<<<<<< HEAD
   const [isChecked, setChecked] = useState(false); 
 
 
   //const {permissionone} = getPermissions("permissionone_viewcoursematerials");
-  //console.log(permissionone);
-  const [isCheckedViewMaterials, setCheckedViewMaterials] = useStates(student.permissionone_viewcoursematerials); //replaced automatic falses with actual getPermissions status
+  const [isCheckedViewMaterials, setCheckedViewMaterials] = useState(false); //replaced automatic falses with actual getPermissions status
   //const [isCheckedViewMaterials, setCheckedViewMaterials] = useState(permissionone); //replaced automatic falses with actual getPermissions status
 
   //const {permissiontwo} = getPermissions("permissiontwo_submitlateassignments");
@@ -142,31 +131,6 @@ export default function ParentalControlsPage() {
   //const [isCheckedAccessResources, setCheckedAccessResources] = useState(permissionfive);
 
   //const {permissionsix} = getPermissions("permissionsix_receivenotifications");
-=======
-  //const [isChecked, setChecked] = useState(false); 
-  const { permissionone } = getPermissions("permissionone_viewcoursematerials");
-  console.log(permissionone);
-  const [isCheckedViewMaterials, setCheckedViewMaterials] = useState(false); //replaced automatic falses with actual getPermissions status
-  //const [isCheckedViewMaterials, setCheckedViewMaterials] = useState(permissionone); //replaced automatic falses with actual getPermissions status
-
-  const { permissiontwo } = getPermissions("permissiontwo_submitlateassignments");
-  const [isCheckedSubmitAssignments, setCheckedSubmitAssignments] = useState(false);
-  //const [isCheckedSubmitAssignments, setCheckedSubmitAssignments] = useState(permissiontwo);
-
-  const { permissionthree } = getPermissions("permissionthree_discussionparticipation");
-  const [isCheckedParticipateDiscussions, setCheckedParticipateDiscussions] = useState(false);
-  //const [isCheckedParticipateDiscussions, setCheckedParticipateDiscussions] = useState(permissionthree);
-
-  const { permissionfour } = getPermissions("permissionfour_timelimits");
-  const [isCheckedToggleTimeLimits, setCheckedToggleTimeLimits] = useState(false);
-  //const [isCheckedToggleTimeLimits, setCheckedToggleTimeLimits] = useState(permissionfour);
-
-  const { permissionfive } = getPermissions("permissionfive_accessresources");
-  const [isCheckedAccessResources, setCheckedAccessResources] = useState(false);
-  //const [isCheckedAccessResources, setCheckedAccessResources] = useState(permissionfive);
-
-  const { permissionsix } = getPermissions("permissionsix_receivenotifications");
->>>>>>> 7bd83a26316cf0efb327e3f5f2e4c6c0457540e9
   const [isCheckedReceiveNotifications, setCheckedReceiveNotifications] = useState(false);
   //const [isCheckedReceiveNotifications, setCheckedReceiveNotifications] = useState(permissionsix);
 
@@ -194,16 +158,9 @@ export default function ParentalControlsPage() {
           </div>
 
           {/* Student Grades Section */}
-<<<<<<< HEAD
           <div style={columnStyle} id='grades-programs-container'> 
               {renderPerformance()}
             </div>
-=======
-          <div style={columnStyle} id='grades-programs-container'>
-
-            {renderPerformance()}
-          </div>
->>>>>>> 7bd83a26316cf0efb327e3f5f2e4c6c0457540e9
 
           {/* Student Permissions Section */}
           <div style={columnStyle}>
