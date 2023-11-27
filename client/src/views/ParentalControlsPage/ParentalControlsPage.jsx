@@ -1,18 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
-
 import ToggleSwitch from "../../components/ToggleSwitch/ToggleSwitch"; 
 import './ParentalControlsPage.css';
 import GradesComponent from '../Grades/Grades';
 import { updatePermissions, getPermissions } from '../../Utils/requests';
+import { getStudentClassroom } from '../../Utils/requests';
 
 export default function ParentalControlsPage() {
+  /*useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await getStudentClassroom();
+        if (res.data) {
+          if (res.data.lesson_module) {
+            setLessonModule(res.data.lesson_module);
+            //console.log('Data', res.data.lesson_module);
+          }
+        } else {
+          message.error(res.err);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);*/
+
   const listStyle = {
     textAlign: 'left',
     justifyContent: 'center',
     padding: '5px',
-    marginLeft: '40px',
+    marginLeft: '0px',
     marginRight: '0px',
     marginBottom: '40px',
     borderRadius: '5px',
@@ -49,6 +68,8 @@ export default function ParentalControlsPage() {
 
   const [learningStandard, setLessonModule] = useState({});
   const renderPerformance = () => {
+    //const res = getStudentClassroom();
+    //setLessonModule(res.data.lesson_module);
     return <GradesComponent learningStandard={learningStandard} />;
   }
 
@@ -101,7 +122,6 @@ export default function ParentalControlsPage() {
 
           {/* Student Grades Section */}
           <div style={columnStyle} id='grades-programs-container'> 
-
               {renderPerformance()}
             </div>
 
