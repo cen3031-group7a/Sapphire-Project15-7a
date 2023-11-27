@@ -947,7 +947,14 @@
                   "type": "array",
                   "items": {
                     "type": "string"
-                  },
+                  }
+                },
+                "parents": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
                 "permissionone_viewcoursematerials": {
                   "type": "boolean"
                 },

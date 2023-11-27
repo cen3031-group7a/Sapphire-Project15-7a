@@ -816,6 +816,40 @@
               }
             }
           },
+          "parents": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "student": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "permissionone_viewcoursematerials": {
             "type": "boolean",
             "default": false
@@ -874,8 +908,14 @@
             "type": "array",
             "items": {
               "type": "string"
-            },
-       
+            }
+          },
+          "parents": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "permissionone_viewcoursematerials": {
             "type": "boolean",
             "default": false

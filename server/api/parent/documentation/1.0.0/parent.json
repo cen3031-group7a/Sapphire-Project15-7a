@@ -529,10 +529,6 @@
             "type": "string",
             "format": "password"
           },
-          "name": {
-            "type": "string"
-          },
-
           "student": {
             "required": [
               "id",
@@ -567,7 +563,14 @@
                 "type": "array",
                 "items": {
                   "type": "string"
-                },
+                }
+              },
+              "parents": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "permissionone_viewcoursematerials": {
                 "type": "boolean"
               },
@@ -585,7 +588,6 @@
               },
               "permissionsix_receivenotifications": {
                 "type": "boolean"
-
               },
               "created_by": {
                 "type": "string"
@@ -595,7 +597,6 @@
               }
             }
           },
-
           "name": {
             "type": "string"
           },
