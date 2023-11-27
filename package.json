@@ -2,5 +2,6 @@
   "dependencies": {
     "@sentry/node": "^7.81.1",
     "@strapi/plugin-sentry": "^4.15.4"
+    "react-calendar": "^4.6.1"
   }
 }

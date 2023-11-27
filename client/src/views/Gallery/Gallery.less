@@ -1,5 +1,4 @@
 @import "../../assets/style";
-//Styling for gallery with Gallery.less to ensure it moves with page adjustments
 
 .container {
   padding: 20px;
@@ -23,7 +22,7 @@ label {
 }
 
 select, input {
-margin-top: 20px; 
+  margin-top: 20px; 
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -56,18 +55,36 @@ margin-top: 20px;
   color: #666;
 }
 
-.centered-buttons button {
-  padding: 12px 20px; 
+.button-group {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.past-program-button,
+.share-button,
+.navigate-button {
+  padding: 5px 20px; 
   font-size: 16px; 
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin: 0 10px; 
-  margin-bottom: 30px;
+  margin-right: 10px;
 }
 
-.centered-buttons button.active {
-  background-color: #5BABDE;
-  color: #414141;
+.share-button {
+  padding: 1px 16px;
+  background-color: #3D5C82; 
+  color: #fff;
+}
+
+.navigate-button {
+  background-color: #3D5C82; 
+  color: #fff;
+}
+
+.button-group button:hover {
+  background-color: #555; 
+  color: #fff;
 }

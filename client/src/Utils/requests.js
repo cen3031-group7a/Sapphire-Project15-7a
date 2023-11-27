@@ -181,6 +181,14 @@ export const getStudent = async () =>
     error: 'Student info could not be retrieved.',
   });
 
+  export const getStudentMe = async () =>
+  makeRequest({
+    method: GET,
+    path: `${server}/students/me`,
+    auth: true,
+    error: 'StudentMe info could not be retrieved.',
+  });
+
 export const postJoin = async (code, ids) =>
   makeRequest({
     method: POST,
@@ -309,6 +317,14 @@ export const getSave = async (id) =>
   makeRequest({
     method: GET,
     path: `${server}/saves/${id}`,
+    auth: true,
+    error: 'Save could not be retrieved.',
+  });
+//added in
+  export const getSaved = async () =>
+  makeRequest({
+    method: GET,
+    path: `${server}/saves`,
     auth: true,
     error: 'Save could not be retrieved.',
   });
@@ -708,13 +724,21 @@ export const getClassroomWorkspace = async (id) =>
     error: 'Unable to retrive classroom workspaces',
   });
 
-export const updatePermissions = async (data) => 
+
+export const updatePermissions = async (id, status) => 
   makeRequest({
     method: PUT,
     path:`${server}/parentalcontrolspage/${id}`,
     auth: true,
-    data: {
-      value,
-    },
+
+    id: status,
     error: 'Failed to update permissions',
+  });
+
+export const getPermissions = async (id) => 
+  makeRequest({
+    method: GET,
+    path:`${server}/parentalcontrolspage/${id}`,
+    auth: true,
+    error: 'Failed to retrieve permission status',
   });

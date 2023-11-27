@@ -785,6 +785,40 @@
             "type": "string",
             "format": "date-time"
           },
+          "parents": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "student": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "Name": {
+                  "type": "string"
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "permissionone_viewcoursematerials": {
             "type": "boolean",
             "default": false
@@ -838,6 +872,30 @@
           "last_logged_in": {
             "type": "string",
             "format": "date-time"
+          },
+          "permissionone_viewcoursematerials": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissiontwo_submitlateassignments": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionthree_discussionparticipation": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionfour_timelimits": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionfive_accessresources": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionsix_receivenotifications": {
+            "type": "boolean",
+            "default": false
           },
           "permissionone_viewcoursematerials": {
             "type": "boolean",

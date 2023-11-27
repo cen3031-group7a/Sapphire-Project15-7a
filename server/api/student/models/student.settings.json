@@ -35,6 +35,11 @@
     "last_logged_in": {
       "type": "datetime"
     },
+
+    "parents": {
+      "collection": "parent"
+    },
+
     "permissionone_viewcoursematerials": {
       "type": "boolean",
       "default": false

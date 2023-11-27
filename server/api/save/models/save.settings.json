@@ -14,8 +14,8 @@
     "activity": {
       "model": "activity"
     },
-    "student": {
-      "model": "student"
+    "students": {
+      "collection": "student"
     },
     "workspace": {
       "type": "text",
