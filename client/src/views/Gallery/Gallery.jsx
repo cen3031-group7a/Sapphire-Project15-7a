@@ -8,7 +8,9 @@ import './Gallery.less';
 const Gallery = () => {
   const [saves, setSaves] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeFilter, setActiveFilter] = useState('All');
+  const [activeFilter, setActiveFilter] = useState('All')
+  const [sharedWith, setSharedWith] = useState([]);
+  const [idOfStudentLoggedin, setIdOfStudentLoggedin] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,19 +18,32 @@ const Gallery = () => {
       try {
         const s = await getStudentMe();
         const studentID = s.data.students[0].id;
-        console.log(studentID);
+        const studentName = s.data.students[0].name;
     
-        // NEED TO ADD LOGIC WHERE STUDENT ID MATCHES ID IN SAVED.
+        console.log('MY ID', studentID);
     
         const savesRes = await getSaved();
-        const idOfStudentLoggedin = savesRes.data[0].student.id;
+        console.log('Saves:', savesRes);
     
-        if (studentID === idOfStudentLoggedin && savesRes.data) {
+        const savesForLoggedInStudent = savesRes.data.filter((save) => {
+          return save.students.some((student) => student.id === studentID);
+        });
+    
+        console.log('Saves for logged-in student:', savesForLoggedInStudent);
+    
+        const allStudentsInProjects = savesForLoggedInStudent.flatMap((save) =>
+          save.students.map((student) => student.name)
+        );
+    
+        const uniqueStudentsInProjects = [...new Set(allStudentsInProjects)];
+    
+        setSharedWith(uniqueStudentsInProjects.filter((name) => name !== studentName));        setIdOfStudentLoggedin(studentID);
+        console.log(idOfStudentLoggedin);
+        if (savesForLoggedInStudent) {
           try {
-            setSaves(savesRes.data);
-            console.log('savesRes1:', savesRes.data);
+            setSaves(savesForLoggedInStudent);
           } catch (error) {
-            console.error(savesRes.error);
+            console.error(error);
           }
         }
       } catch (error) {
@@ -76,7 +91,19 @@ const handleFilterChange = (filter) => {
           {filteredSaves.length > 0 ? (
             filteredSaves.map((save) => (
               <div key={save.activity.id} className="project-item">
-                <div className="project-name">{`${save.activity.StandardS}: ${save.activity.number}`}</div>
+                <div className="project-name">
+                  {`${save.activity.StandardS}: ${save.activity.number}`}
+                  <div className="student-names">
+                    {save.students
+                      .filter((name) => name !== name) 
+                      .map((student, index) => (
+                        <span key={index} className="student-name">
+                          console.log(index);
+                          {student}
+                        </span>
+                      ))}
+                  </div>
+                </div>
                 <div className="project-category">Past Program</div>
                 <div className="button-group">
                   <button className="share-button" onClick={() => handleShare(save.activity)}>
