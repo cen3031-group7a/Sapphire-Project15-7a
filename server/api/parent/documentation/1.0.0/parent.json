@@ -529,6 +529,10 @@
             "type": "string",
             "format": "password"
           },
+          "name": {
+            "type": "string"
+          },
+
           "student": {
             "required": [
               "id",
@@ -559,6 +563,11 @@
               "last_logged_in": {
                 "type": "string"
               },
+              "programs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
               "permissionone_viewcoursematerials": {
                 "type": "boolean"
               },
@@ -576,6 +585,7 @@
               },
               "permissionsix_receivenotifications": {
                 "type": "boolean"
+
               },
               "created_by": {
                 "type": "string"
@@ -585,6 +595,7 @@
               }
             }
           },
+
           "name": {
             "type": "string"
           },

@@ -16,11 +16,15 @@
     "password": {
       "type": "password"
     },
+
     "student": {
       "model": "student"
     },
     "name": {
       "type": "string"
+    },
+    "student": {
+      "model": "student"
     }
   }
 }

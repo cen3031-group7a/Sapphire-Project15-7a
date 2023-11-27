@@ -44,6 +44,34 @@ const makeRequest = async ({ method, path, data, auth = false, error }) => {
   return { data: res, err: err };
 };
 
+export const getPrograms = async () =>
+  makeRequest({
+    method: GET,
+    path: `${server}/programs`,
+    auth: true,
+    error: 'Programs could not be retrieved.',
+  });
+
+export const postProgram = async (title) =>
+  makeRequest({
+    method: POST,
+    path: `${server}/programs`,
+    data: {
+      title,
+    },
+    auth: true,
+    error: 'Program could not be created.',
+  });
+
+export const deleteProgram = async (id) =>
+  makeRequest({
+    method: DELETE,
+    path: `${server}/programs/${id}`,
+    auth: true,
+    error: 'Program could not be deleted.',
+  });
+
+
 export const getActivities = async () =>
   makeRequest({
     method: GET,

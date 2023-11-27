@@ -1,17 +1,3 @@
-/* MyPrograms.css */
-
-#activity-container {
-    background-color: #f7f7f7;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-#header {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
 #add-button {
     color: black;
     margin: 20px;
@@ -19,6 +5,44 @@
     text-align: left;
     padding: 10px;
     border-radius: 5px;
+}
+
+.popup {
+    background-color: lightblue;
+    position: absolute;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+}
+
+.popup-inner {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+#projectName {
+    color: black;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.create-button {
+    background-color: blue;
+    color: white;
+    padding: 12px 20px;
+    margin-right: 10px;
+    border-radius: 6px;
+    border: none;
+}
+
+.cancel-button {
+    background-color: blue;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    border: none;
 }
 
 #add-button button {
@@ -38,61 +62,98 @@
 #program-list {
     text-align: left;
     padding: 10px;
-    margin-left: 30px;
-    margin-bottom: 30px;
+    margin-left: 10px;
+    margin-bottom: 10px;
     border-radius: 5px;
-}
-
-#program-list ul {
-    list-style: none;
-    padding: 0;
+    height: 70%;
+    overflow-y: auto;
 }
 
 #program-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #fff;
-    width: 85%;
     padding: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
 }
 
 #program-list li:hover {
     background-color: #f0f0f0;
 }
 
-/* MENU */
+.program-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link {
+    width: 100%;
+}
+
+.dots-container {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+.dots-container:hover {
+    background-color: #f0f0f0;
+}
 
 .dots {
-    float: right;
+    position: relative;
     cursor: pointer;
     color: black;
-    font-size: 10px;
-    margin-right: 10px;
+    font-size: 0.8rem;
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
 }
 
 .menu {
-    position: absolute;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 35%;
+    transform: translate(-50%, -50%);
     background-color: white;
-    width: 120px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 100;
+}
+
+.menu h1 {
     text-align: center;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 1;
-    top: 26.5%;
-    left: 85%;
+    margin: 0;
+    padding: 5px;
 }
 
 .menu ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
+    padding: 10px;
+    margin: 10px;
 }
 
 .menu ul li {
-    padding: 10px;
-    margin: 10px;
+    padding: 50px;
     color: black;
     cursor: pointer;
 }

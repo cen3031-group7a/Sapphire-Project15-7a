@@ -712,22 +712,12 @@
               "permissionfive_accessresources": {
                 "type": "boolean"
               },
-              "permissionone_viewcoursematerials": {
-                "type": "boolean"
-              },
-              "permissiontwo_submitlateassignments": {
-                "type": "boolean"
-              },
-              "permissionthree_discussionparticipation": {
-                "type": "boolean"
-              },
-              "permissionfour_timelimits": {
-                "type": "boolean"
-              },
-              "permissionfive_accessresources": {
-                "type": "boolean"
-              },
-
+    
+              "programs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
               "permissionsix_receivenotifications": {
                 "type": "boolean"
               },

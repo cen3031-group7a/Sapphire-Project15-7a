@@ -35,7 +35,10 @@
     "last_logged_in": {
       "type": "datetime"
     },
-
+    "programs": {
+      "via": "student",
+      "collection": "program"
+  },
     "parents": {
       "collection": "parent"
     },
@@ -63,6 +66,7 @@
     "permissionsix_receivenotifications": {
       "type": "boolean",
       "default": false
+
     }
   }
 }
