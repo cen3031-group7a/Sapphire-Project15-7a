@@ -13,10 +13,10 @@ const makeRequest = async ({ method, path, data, auth = false, error }) => {
   let err = null;
   const config = auth
     ? {
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
-      }
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    }
     : null;
 
   try {
@@ -138,7 +138,7 @@ export const getStudents = async (code) =>
     error: 'Student info could not be retrieved.',
   });
 
-  export const getStudentMe = async () =>
+export const getStudentMe = async () =>
   makeRequest({
     method: GET,
     path: `${server}/students/me`,
@@ -146,21 +146,21 @@ export const getStudents = async (code) =>
     error: 'StudentMe info could not be retrieved.',
   });
 
-  export const getParents = async () =>
+export const getParents = async () =>
   makeRequest({
     method: GET,
     path: `${server}/parents`,
     error: 'Parent info could not be retrieved.',
   });
 
-  export const getParent = async (id) =>
+export const getParent = async (id) =>
   makeRequest({
     method: GET,
     path: `${server}/parents/${id}`,
     error: 'Parent info could not be retrieved.',
   });
 
-  export const postParents = async (name, email, password, student)=> 
+export const postParents = async (name, email, password, student) =>
   makeRequest({
     method: POST,
     path: `${server}/parents`,
@@ -179,14 +179,6 @@ export const getStudent = async () =>
     path: `${server}/students/`,
     auth: true,
     error: 'Student info could not be retrieved.',
-  });
-
-  export const getStudentMe = async () =>
-  makeRequest({
-    method: GET,
-    path: `${server}/students/me`,
-    auth: true,
-    error: 'StudentMe info could not be retrieved.',
   });
 
 export const postJoin = async (code, ids) =>
@@ -321,7 +313,7 @@ export const getSave = async (id) =>
     error: 'Save could not be retrieved.',
   });
 //added in
-  export const getSaved = async () =>
+export const getSaved = async () =>
   makeRequest({
     method: GET,
     path: `${server}/saves`,
@@ -555,7 +547,7 @@ export const getLessonModuleActivities = async (lsId) =>
     error: 'Activity cannot be retrived',
   });
 
-  export const getActivityLevels = async (lsId) =>
+export const getActivityLevels = async (lsId) =>
   makeRequest({
     method: GET,
     path: `${server}/authorized-workspaces?activities.id=${lsId}`,
@@ -725,20 +717,20 @@ export const getClassroomWorkspace = async (id) =>
   });
 
 
-export const updatePermissions = async (id, status) => 
+export const updatePermissions = async (id, status) =>
   makeRequest({
     method: PUT,
-    path:`${server}/parentalcontrolspage/${id}`,
+    path: `${server}/parentalcontrolspage/${id}`,
     auth: true,
 
     id: status,
     error: 'Failed to update permissions',
   });
 
-export const getPermissions = async (id) => 
+export const getPermissions = async (id) =>
   makeRequest({
     method: GET,
-    path:`${server}/parentalcontrolspage/${id}`,
+    path: `${server}/parentalcontrolspage/${id}`,
     auth: true,
     error: 'Failed to retrieve permission status',
   });
