@@ -2,15 +2,16 @@ import React from 'react';
 import './Grades.less';
 
 const GradesComponent = ({ learningStandard }) => {
-    console.log(learningStandard);
+
+    // console.log('LS', learningStandard.expectations);
     return (
         <div id='grades-section'>
         <h1 id='grades-title'>Performance and Grades</h1>
-        {learningStandard.programs ? (
-            learningStandard.programs.map((program) => (
-            <div key={program.id} className='program-section'>
-                <div className='program-name'>{program.name}</div>
-                <div className='program-grade'>{program.grade}</div>
+        {learningStandard.activities ? (
+            learningStandard.activities.map((activity) => (
+            <div key={activity.id} className='program-section'>
+                <div>{`${learningStandard.name}: Activity ${activity.number}`}</div>
+                <div className='program-grade'>{activity.grade}</div>
             </div>
             ))
         ) : (

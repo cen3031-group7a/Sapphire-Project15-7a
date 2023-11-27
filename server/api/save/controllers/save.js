@@ -19,6 +19,7 @@ module.exports = {
 
     return saves;
   },
+  
 
   async create(ctx) {
     // ensure request was not sent as formdata
@@ -47,6 +48,7 @@ module.exports = {
 
     // ensure the activity is valid
     const validActivity = await strapi.services.activity.findOne({ id: activity });
+    
     if (validActivity === null)
       return ctx.notFound('The activity provided is invalid!', {
         id: 'Save.create.activity.invalid',
@@ -89,4 +91,7 @@ module.exports = {
       })
     );
   },
+
+
+
 };
