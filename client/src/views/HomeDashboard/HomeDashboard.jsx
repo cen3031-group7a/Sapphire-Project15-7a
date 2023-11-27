@@ -7,10 +7,9 @@ const buttonStyle = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '14vh',
-  height: '12vw',
+  width: '90%',
   border: '2px solid darkblue',
-  color: 'darkblue',
+  margin: '7px', // Add spacing between buttons if needed
 };
 
 const lightBlue = {
@@ -20,6 +19,10 @@ const lightBlue = {
 const gold = {
   background: 'gold',
 };
+
+const darkblue = {
+  background: 'darkblue',
+}
 
 const containerStyle = {
   display: 'flex',
@@ -34,7 +37,18 @@ const activityContainerStyle = {
   flexDirection: 'column',
   border: '2px solid black',
   borderRadius: '40px',
-  width: '80%', // Set width to 80% for cleaner look
+  width: '80%', // Set width to 80% for a cleaner look
+};
+
+const columnContainerStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '100%', // Adjust width as needed
+  // border: '2px solid black',
+  borderRadius: '40px',
+  padding: '20px',
 };
 
 export default function HomeDashboard() {
@@ -42,10 +56,10 @@ export default function HomeDashboard() {
 
   return (
     <div className='container nav-padding' style={containerStyle}>
-      <NavBar />
+      <NavBar/>
       <div id='activity-container' style={activityContainerStyle}>
         <div id='header'>
-          <div>Dashboard</div>
+          <div>Home Dashboard</div>
         </div>
         <div style={{
           display: 'flex',
@@ -55,11 +69,13 @@ export default function HomeDashboard() {
           <h1 style={{
             textAlign: 'center',
             fontSize: '6vh',
-          }}>Welcome to the Student Homepage</h1>
-          <div style={{ display: 'flex' }}>
+            color: 'darkblue',
+          }}>Welcome to the Student Home Dashboard</h1>
+          <div style={columnContainerStyle}>
             <Link to="/myprograms" style={{
               ...buttonStyle,
               ...lightBlue,
+              borderRadius: '45px', // Adjust the border radius for pill shape
             }}>
               <button style={{
                 width: '100%',
@@ -68,11 +84,16 @@ export default function HomeDashboard() {
                 border: 'none',
                 fontSize: '40px',
                 cursor: 'pointer',
+                color: 'darkblue',
+                height: '90px',
+                borderRadius: '40px', // Adjust the border radius for pill shape
               }}>My Programs</button>
             </Link>
+            {/* Repeat the same modifications for the other buttons */}
             <Link to="/parentalcontrols" style={{
               ...buttonStyle,
-              ...gold,
+              ...darkblue,
+              borderRadius: '45px',
             }}>
               <button style={{
                 width: '100%',
@@ -81,13 +102,15 @@ export default function HomeDashboard() {
                 border: 'none',
                 fontSize: '40px',
                 cursor: 'pointer',
+                color: 'white',
+                height: '90px',
+                borderRadius: '40px',
               }}>Parental Controls</button>
             </Link>
-          </div>
-          <div style={{ display: 'flex' }}>
             <Link to="/assignments" style={{
               ...buttonStyle,
-              ...gold,
+              ...lightBlue,
+              borderRadius: '45px',
             }}>
               <button style={{
                 width: '100%',
@@ -96,11 +119,15 @@ export default function HomeDashboard() {
                 border: 'none',
                 fontSize: '40px',
                 cursor: 'pointer',
+                color: 'darkblue',
+                height: '90px',
+                borderRadius: '40px',
               }}>Classroom</button>
             </Link>
             <Link to="/gallery" style={{
               ...buttonStyle,
-              ...lightBlue,
+              ...darkblue,
+              borderRadius: '45px',
             }}>
               <button style={{
                 width: '100%',
@@ -109,6 +136,9 @@ export default function HomeDashboard() {
                 border: 'none',
                 fontSize: '40px',
                 cursor: 'pointer',
+                color: 'white',
+                height: '90px',
+                borderRadius: '40px',
               }}>Gallery</button>
             </Link>
           </div>
