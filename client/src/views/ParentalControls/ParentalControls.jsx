@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import NavBar from '../../components/NavBar/NavBar';
 import { Link, useNavigate } from 'react-router-dom';
 import './ParentalControls.less';
-import { getParent, getParents, postParents, getStudentMe } from '../../Utils/requests';
+import { getParent, getParents, postParents, getStudentMe, postRegisterParent, getUser, forgetPassword } from '../../Utils/requests';
 import { postUser, setUserSession } from '../../Utils/AuthRequests';
 import { message } from 'antd';
 
@@ -25,7 +25,7 @@ const CreateAccountModal = ({ closeModal, handleCreateAccount, currentStudent })
 
   const handleCreate = () => {
     // Add any validation logic here before calling the create parent function
-    handleCreateAccount(newName, newEmail, newPassword, currentStudent);
+    handleCreateAccount(newName, newEmail, newPassword);
     closeModal();
   };
 
@@ -34,19 +34,17 @@ const CreateAccountModal = ({ closeModal, handleCreateAccount, currentStudent })
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <h2>Create Account</h2>
         <div className="form-group">
-          <label>Name:</label>
-          <input type="text" id="name" value={newName} onChange={handleNameChange} required />
+          <input type="create" placeholder="Username" style={{ marginBottom: '5%', width: '95%' }} value={newName} onChange={handleNameChange} required />
         </div>
         <div className="form-group">
-          <label>Email:</label>
-          <input type="email" id="email" value={newEmail} onChange={handleEmailChange} required />
+          <input type="email" placeholder="Email" style={{ marginRight: '10%', width: '90%' }} value={newEmail} onChange={handleEmailChange} required />
         </div>
         <div className="form-group">
-          <label>Password:</label>
-          <input type="password" id="password" value={newPassword} onChange={handlePasswordChange} required />
+          <input type="password" placeholder="Password" style={{ marginRight: '10%', width: '90%' }} value={newPassword} onChange={handlePasswordChange} required />
         </div>
-        <button onClick={handleCreate}>Create Account</button>
-        <button onClick={closeModal}>Cancel</button>
+        <button type='button' onClick={handleCreate}>Create Account</button>
+        <button style={{ marginTop: '5%'}} onClick={closeModal}>Cancel</button>
+
       </div>
     </div>
   );
@@ -61,7 +59,7 @@ const ParentalControls = () => {
   const [currentStudent, setCurrentStudent] = useState('');
 
   useEffect(() => {
-    getParents().then((res) => {
+    getUser().then((res) => {
       if (res.data) {
         setParentList(res.data);
       } else {
@@ -102,10 +100,10 @@ const ParentalControls = () => {
     });
   }, []);
 
-  const handleCreateAccount = async (newName, newEmail, newPassword, currentStudent) => {
+  const handleCreateAccount = async (newName, newEmail, newPassword) => {
     try {
       // Make a POST request to the Strapi API endpoint for creating a new user
-      const { data } = await postParents(newName, newEmail, newPassword, currentStudent);
+      const { data, error } = await postRegisterParent(newName, newEmail, newPassword);
       // Log success message
       message.log('Account created successfully');
       // Redirect to the new user's sandbox
@@ -114,14 +112,9 @@ const ParentalControls = () => {
       // Optionally, you can do something after successfully creating the account
     } catch (error) {
       // Handle errors
-      if (error.response) {
-        // The request was made, but the server responded with an error status code
-        message.error('Failed to create account:', error.response.data.message);
-      } else if (error.request) {
-        // The request was made, but no response was received
-        message.error('No response received. Please try again later.');
+      if (!error) {
+        message.error('Failed to create account.');
       } else {
-        // Something happened in setting up the request that triggered an error
         console.log('Account created successfully');
       }
     }
@@ -159,6 +152,7 @@ const ParentalControls = () => {
             <label>Email:</label>
             <input
               type='email'
+              style={{marginLeft:'4%'}}
               value={email}
               onChange={handleEmailChange}
               required
@@ -176,11 +170,11 @@ const ParentalControls = () => {
           <div className='center-button'>
             <div style={{
                 display: 'flex',
-                width: '26vw',
+                width: '25vw',
                 justifyContent: 'space-between'
               }}>
               <button type='submit' className='submit-button'>Log In</button>
-              <button type='button' className='submit-button'>Forgot Password?</button>
+              <button type='button' className='submit-button' onClick={() => navigate('/forgot-password')}>Forgot Password?</button>
             </div>
           </div>
           </form>
@@ -190,7 +184,7 @@ const ParentalControls = () => {
           </button>
         </div>
 
-        <div>
+        {/* <div>
           <b>Parent List: </b>
           {JSON.stringify(parentList)}
         </div>
@@ -198,7 +192,7 @@ const ParentalControls = () => {
         <div>
           <b>Current Student: </b>
           {JSON.stringify(currentStudent)}
-        </div>
+        </div> */}
 
       </div>
       

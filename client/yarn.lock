@@ -1402,7 +1402,7 @@ rc-virtual-list@^3.2.0, rc-virtual-list@^3.5.1:
 
 react-calendar@^4.6.1:
   version "4.6.1"
-  resolved "https://registry.npmjs.org/react-calendar/-/react-calendar-4.6.1.tgz"
+  resolved "https://registry.yarnpkg.com/react-calendar/-/react-calendar-4.6.1.tgz#23dbe4fcf6e3edd731ff8aa92e8e20b28c446fcb"
   integrity sha512-MvCPdvxEvq7wICBhFxlYwxS2+IsVvSjTcmlr0Kl3yDRVhoX7btNg0ySJx5hy9rb1eaM4nDpzQcW5c87nfQ8n8w==
   dependencies:
     "@wojtekmaj/date-utils" "^1.1.3"

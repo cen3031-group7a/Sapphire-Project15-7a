@@ -522,13 +522,6 @@
           "id": {
             "type": "string"
           },
-          "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string",
-            "format": "password"
-          },
           "student": {
             "required": [
               "id",
@@ -600,6 +593,9 @@
           "name": {
             "type": "string"
           },
+          "lastname": {
+            "type": "string"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -608,17 +604,13 @@
       },
       "NewParent": {
         "properties": {
-          "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string",
-            "format": "password"
-          },
           "student": {
             "type": "string"
           },
           "name": {
+            "type": "string"
+          },
+          "lastname": {
             "type": "string"
           },
           "published_at": {

@@ -762,3 +762,25 @@ export const getPermissions = async (id) =>
     auth: true,
     error: 'Failed to retrieve permission status',
   });
+
+  export const postRegisterParent = async (username, email, password) =>
+  makeRequest({
+    method: POST,
+    path: `${server}/auth/local/register`,
+    auth: true,
+    data: {
+      username,
+      email,
+      password,
+      confirmed: true,
+    },
+    error: 'Failed to create Parent account',
+  });
+
+  export const getUser = async () =>
+  makeRequest({
+    method: GET,
+    path: `${server}/users`,
+    auth: true,
+    error: 'Failed to retrieve Users',
+  });
