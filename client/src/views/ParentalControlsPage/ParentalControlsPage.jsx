@@ -25,7 +25,7 @@ export default function ParentalControlsPage() {
   }, [])
 
   const [learningStandard, setLessonModule] = useState({});
-  useEffect(() => {
+  /*useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await getStudentClassroom();
@@ -42,9 +42,9 @@ export default function ParentalControlsPage() {
       }
     };
     fetchData();
-  }, []);
+  }, []);*/
 
-  const [student, setStudent] = useState({});
+  /*const [student, setStudent] = useState({});
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -59,7 +59,7 @@ export default function ParentalControlsPage() {
       }
     };
     fetchData();
-  }, []);
+  }, []);*/
   
   const listStyle = {
     textAlign: 'left',
@@ -69,8 +69,6 @@ export default function ParentalControlsPage() {
     marginRight: '0px',
     marginBottom: '40px',
     borderRadius: '5px',
-
-    //backgroundColor: 'rgba(61, 159, 230, 0.45)',
   }
 
   const columnStyle = {
@@ -102,13 +100,10 @@ export default function ParentalControlsPage() {
   }
 
   const renderPerformance = () => {
-    //const res = getStudentClassroom();
-    //setLessonModule(res.data.lesson_module);
     return <GradesComponent learningStandard={learningStandard} />;
   }
 
   const [isChecked, setChecked] = useState(false); 
-
 
   //const {permissionone} = getPermissions("permissionone_viewcoursematerials");
   const [isCheckedViewMaterials, setCheckedViewMaterials] = useState(false); //replaced automatic falses with actual getPermissions status
@@ -200,7 +195,6 @@ export default function ParentalControlsPage() {
               <button onClick={handleClick}>
                 {canChange ? "Save Permissions" : "Edit Permissions"}
               </button>
-              {/**/}
             </div>
           </div>
         </div>
