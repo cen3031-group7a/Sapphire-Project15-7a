@@ -2,6 +2,7 @@ import React from 'react';
 import './Grades.less';
 
 const GradesComponent = ({ learningStandard }) => {
+
     // console.log('LS', learningStandard.expectations);
     return (
         <div id='grades-section'>
