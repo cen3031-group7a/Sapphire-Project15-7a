@@ -138,10 +138,45 @@ export const getStudents = async (code) =>
     error: 'Student info could not be retrieved.',
   });
 
-export const getStudent = async (id) =>
+  export const getStudentMe = async () =>
   makeRequest({
     method: GET,
-    path: `${server}/students/${id}`,
+    path: `${server}/students/me`,
+    auth: true,
+    error: 'StudentMe info could not be retrieved.',
+  });
+
+  export const getParents = async () =>
+  makeRequest({
+    method: GET,
+    path: `${server}/parents`,
+    error: 'Parent info could not be retrieved.',
+  });
+
+  export const getParent = async (id) =>
+  makeRequest({
+    method: GET,
+    path: `${server}/parents/${id}`,
+    error: 'Parent info could not be retrieved.',
+  });
+
+  export const postParents = async (name, email, password, student)=> 
+  makeRequest({
+    method: POST,
+    path: `${server}/parents`,
+    data: {
+      name: name,
+      email: email,
+      password: password,
+      student: student
+    },
+    error: 'Failed to create account.',
+  })
+
+export const getStudent = async () =>
+  makeRequest({
+    method: GET,
+    path: `${server}/students/`,
     auth: true,
     error: 'Student info could not be retrieved.',
   });
@@ -543,7 +578,7 @@ export const forgetPassword = async (email) =>
     data: {
       email,
     },
-    error: 'cannot retrive data from the provided email',
+    error: 'cannot retrieve data from the provided email',
   });
 
 export const resetPassword = async (code, password, passwordConfirmation) =>
@@ -689,11 +724,13 @@ export const getClassroomWorkspace = async (id) =>
     error: 'Unable to retrive classroom workspaces',
   });
 
+
 export const updatePermissions = async (id, status) => 
   makeRequest({
     method: PUT,
     path:`${server}/parentalcontrolspage/${id}`,
     auth: true,
+
     id: status,
     error: 'Failed to update permissions',
   });

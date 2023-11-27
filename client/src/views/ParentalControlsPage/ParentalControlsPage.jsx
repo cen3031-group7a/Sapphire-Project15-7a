@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
+
 import ToggleSwitch from "../../components/ToggleSwitch/ToggleSwitch"; 
 import './ParentalControlsPage.css';
 import GradesComponent from '../Grades/Grades';
@@ -94,6 +95,7 @@ export default function ParentalControlsPage() {
 
           {/* Student Grades Section */}
           <div style={columnStyle} id='grades-programs-container'> 
+
               {renderPerformance()}
             </div>
 

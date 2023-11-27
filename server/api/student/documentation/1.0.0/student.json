@@ -873,11 +873,29 @@
             "type": "string",
             "format": "date-time"
           },
-          "parents": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+          "permissionone_viewcoursematerials": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissiontwo_submitlateassignments": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionthree_discussionparticipation": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionfour_timelimits": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionfive_accessresources": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionsix_receivenotifications": {
+            "type": "boolean",
+            "default": false
           },
           "permissionone_viewcoursematerials": {
             "type": "boolean",

@@ -2,8 +2,7 @@
   "kind": "collectionType",
   "collectionName": "parents",
   "info": {
-    "name": "Parent",
-    "description": ""
+    "name": "Parent"
   },
   "options": {
     "increments": true,
@@ -14,13 +13,13 @@
     "email": {
       "type": "email"
     },
-    "student": {
-      "model": "student"
-    },
     "password": {
       "type": "password"
     },
-    "Name": {
+    "student": {
+      "model": "student"
+    },
+    "name": {
       "type": "string"
     }
   }

@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/sessions": {
+    "/parents": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -12,7 +12,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Session"
+                    "$ref": "#/components/schemas/Parent"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Session"
+          "Parent"
         ],
         "parameters": [
           {
@@ -201,7 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Session"
+                  "$ref": "#/components/schemas/Parent"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Session"
+          "Parent"
         ],
         "requestBody": {
           "description": "",
@@ -247,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewSession"
+                "$ref": "#/components/schemas/NewParent"
               }
             }
           }
         }
       }
     },
-    "/sessions/count": {
+    "/parents/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -306,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "Session"
+          "Parent"
         ],
         "parameters": []
       }
     },
-    "/sessions/{id}": {
+    "/parents/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -321,7 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Session"
+                  "$ref": "#/components/schemas/Parent"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Session"
+          "Parent"
         ],
         "parameters": [
           {
@@ -383,7 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Session"
+                  "$ref": "#/components/schemas/Parent"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Session"
+          "Parent"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewSession"
+                "$ref": "#/components/schemas/NewParent"
               }
             }
           }
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Session"
+          "Parent"
         ],
         "parameters": [
           {
@@ -514,7 +514,7 @@
   },
   "components": {
     "schemas": {
-      "Session": {
+      "Parent": {
         "required": [
           "id"
         ],
@@ -522,10 +522,17 @@
           "id": {
             "type": "string"
           },
-          "classroom": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string",
+            "format": "password"
+          },
+          "student": {
             "required": [
               "id",
-              "code"
+              "enrolled"
             ],
             "properties": {
               "id": {
@@ -534,7 +541,10 @@
               "name": {
                 "type": "string"
               },
-              "school": {
+              "character": {
+                "type": "string"
+              },
+              "classroom": {
                 "type": "string"
               },
               "sessions": {
@@ -543,35 +553,29 @@
                   "type": "string"
                 }
               },
-              "mentors": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
+              "enrolled": {
+                "type": "boolean"
               },
-              "students": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "code": {
+              "last_logged_in": {
                 "type": "string"
               },
-              "grade": {
-                "type": "string"
+              "permissionone_viewcoursematerials": {
+                "type": "boolean"
               },
-              "selections": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
+              "permissiontwo_submitlateassignments": {
+                "type": "boolean"
               },
-              "authorized_workspaces": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
+              "permissionthree_discussionparticipation": {
+                "type": "boolean"
+              },
+              "permissionfour_timelimits": {
+                "type": "boolean"
+              },
+              "permissionfive_accessresources": {
+                "type": "boolean"
+              },
+              "permissionsix_receivenotifications": {
+                "type": "boolean"
               },
               "created_by": {
                 "type": "string"
@@ -581,327 +585,33 @@
               }
             }
           },
-          "students": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "enrolled"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "character": {
-                  "type": "string"
-                },
-                "classroom": {
-                  "type": "string"
-                },
-                "sessions": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "enrolled": {
-                  "type": "boolean"
-                },
-                "last_logged_in": {
-                  "type": "string"
-                },
-                "permissionone_viewcoursematerials": {
-                  "type": "boolean"
-                },
-                "permissiontwo_submitlateassignments": {
-                  "type": "boolean"
-                },
-                "permissionthree_discussionparticipation": {
-                  "type": "boolean"
-                },
-                "permissionfour_timelimits": {
-                  "type": "boolean"
-                },
-                "permissionfive_accessresources": {
-                  "type": "boolean"
-                },
-                "permissionsix_receivenotifications": {
-                  "type": "boolean"
-                },
-                "permissionone_viewcoursematerials": {
-                  "type": "boolean"
-                },
-                "permissiontwo_submitlateassignments": {
-                  "type": "boolean"
-                },
-                "permissionthree_discussionparticipation": {
-                  "type": "boolean"
-                },
-                "permissionfour_timelimits": {
-                  "type": "boolean"
-                },
-                "permissionfive_accessresources": {
-                  "type": "boolean"
-                },
-                "permissionsix_receivenotifications": {
-                  "type": "boolean"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
+          "name": {
+            "type": "string"
           },
-          "submissions": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "status",
-                "workspace",
-                "board",
-                "sketch",
-                "sandbox"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "status": {
-                  "type": "string"
-                },
-                "workspace": {
-                  "type": "string"
-                },
-                "success": {
-                  "type": "boolean"
-                },
-                "hex": {
-                  "type": "string"
-                },
-                "stdout": {
-                  "type": "string"
-                },
-                "stderr": {
-                  "type": "string"
-                },
-                "board": {
-                  "type": "string"
-                },
-                "sketch": {
-                  "type": "string"
-                },
-                "sandbox": {
-                  "type": "boolean"
-                },
-                "session": {
-                  "type": "string"
-                },
-                "activity": {
-                  "type": "string"
-                },
-                "job_id": {
-                  "type": "integer"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "saves": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "workspace"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "activity": {
-                  "type": "string"
-                },
-                "students": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "workspace": {
-                  "type": "string"
-                },
-                "replay": {
-                  "type": "object"
-                },
-                "session": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "unit": {
-            "required": [
-              "id",
-              "name",
-              "number"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "grade": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "standards_id": {
-                "type": "string"
-              },
-              "standards_description": {
-                "type": "string"
-              },
-              "number": {
-                "type": "integer"
-              },
-              "lesson_modules": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "grade": {
-            "required": [
-              "id",
-              "name"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "classrooms": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "units": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "lesson_module": {
-            "required": [
-              "id",
-              "number",
-              "name"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "number": {
-                "type": "number"
-              },
-              "name": {
-                "type": "string"
-              },
-              "expectations": {
-                "type": "string"
-              },
-              "activities": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "unit": {
-                "type": "string"
-              },
-              "standards": {
-                "type": "string"
-              },
-              "link": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
+          "published_at": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
-      "NewSession": {
+      "NewParent": {
         "properties": {
-          "classroom": {
+          "email": {
             "type": "string"
           },
-          "students": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+          "password": {
+            "type": "string",
+            "format": "password"
           },
-          "submissions": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "saves": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "unit": {
+          "student": {
             "type": "string"
           },
-          "grade": {
+          "name": {
             "type": "string"
           },
-          "lesson_module": {
-            "type": "string"
+          "published_at": {
+            "type": "string",
+            "format": "date-time"
           },
           "created_by": {
             "type": "string"
@@ -915,7 +625,7 @@
   },
   "tags": [
     {
-      "name": "Session"
+      "name": "Parent"
     }
   ]
 }
