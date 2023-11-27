@@ -826,16 +826,13 @@
                 "id": {
                   "type": "string"
                 },
-                "email": {
-                  "type": "string"
-                },
-                "password": {
-                  "type": "string"
-                },
                 "student": {
                   "type": "string"
                 },
                 "name": {
+                  "type": "string"
+                },
+                "lastname": {
                   "type": "string"
                 },
                 "published_at": {

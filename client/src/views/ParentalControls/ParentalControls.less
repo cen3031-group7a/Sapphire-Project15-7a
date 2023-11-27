@@ -50,7 +50,13 @@ input[type='email'] {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-left: 58px;
+  margin-left: 10px;
+}
+
+input[type='create'] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 2%;
 }
 
 .submit-button {
@@ -89,7 +95,14 @@ input[type='email'] {
 }
 
 .modal-content {
-  background: #fff; /* Modal background color */
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: auto;
+  background: white;
   padding: 20px;
   border-radius: 8px;
+  transition: transform 0.3s ease;
+  text-align: center; /* Center text horizontally */
+  align-items: center; /* Center items vertically */
 }
