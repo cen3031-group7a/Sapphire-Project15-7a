@@ -46,6 +46,12 @@
     "activity_template": {
       "type": "text",
       "required": false
+    },
+    "due_dates": {
+      "type": "date"
+    },
+    "grade": {
+      "type": "string"
     }
   }
 }

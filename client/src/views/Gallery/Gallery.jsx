@@ -1,27 +1,60 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBar from '../../components/NavBar/NavBar';
+import { getSaved } from '../../Utils/requests';
+import { useNavigate } from 'react-router-dom';
+import{ getStudentMe } from '../../Utils/requests';
 import './Gallery.less';
 
 const Gallery = () => {
-  //Replace this with actual data from gallery team but this is dummy data for demonstration. 
-  const projectsData = [
-    { id: 1, name: 'Sample Project 1', category: 'My Projects' },
-    { id: 2, name: 'Sample Project 2', category: 'Shared Projects' },
-    { id: 3, name: 'Sample Project 3', category: 'Saved Projects' },
-  ];
-
-  const [projects, setProjects] = useState(projectsData);
-  const [categoryFilter, setCategoryFilter] = useState('All');
+  const [saves, setSaves] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [activeFilter, setActiveFilter] = useState('All');
+  const navigate = useNavigate();
 
-  const filteredProjects = projects.filter((project) => {
-    return (
-      project.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      (categoryFilter === 'All' || project.category === categoryFilter)
-    );
-  });
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const s = await getStudentMe();
+        const studentID = s.data.students[0].id;
+        console.log(studentID);
+    
+        // NEED TO ADD LOGIC WHERE STUDENT ID MATCHES ID IN SAVED.
+    
+        const savesRes = await getSaved();
+        const idOfStudentLoggedin = savesRes.data[0].student.id;
+    
+        if (studentID === idOfStudentLoggedin && savesRes.data) {
+          try {
+            setSaves(savesRes.data);
+            console.log('savesRes1:', savesRes.data);
+          } catch (error) {
+            console.error(savesRes.error);
+          }
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
 
-  //A student should be able to search and filter their project with these funcitonailities. 
+  const handleShare = (activity) => {
+    console.log('Sharing:', activity);
+  };
+const handleFilterChange = (filter) => {
+  setActiveFilter(filter);
+};
+  const filteredSaves = saves.filter((save) =>
+    save.activity.StandardS.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const handleSaves = (activity) => {
+    console.log('Name: ', activity);
+    activity.lesson_module_name = saves.activity;  
+    localStorage.setItem('my-activity', JSON.stringify(activity));
+    navigate('/workspace');
+  };
+
 
   return (
     <div className="container nav-padding">
@@ -31,32 +64,6 @@ const Gallery = () => {
           <div>Gallery Page</div>
         </div>
         <div>
-          <div className="centered-buttons">
-            <button
-              onClick={() => setCategoryFilter('All')}
-              className={categoryFilter === 'All' ? 'active' : ''}
-            >
-              All
-            </button>
-            <button
-              onClick={() => setCategoryFilter('My Projects')}
-              className={categoryFilter === 'My Projects' ? 'active' : ''}
-            >
-              My Projects
-            </button>
-            <button
-              onClick={() => setCategoryFilter('Shared Projects')}
-              className={categoryFilter === 'Shared Projects' ? 'active' : ''}
-            >
-              Shared Projects
-            </button>
-            <button
-              onClick={() => setCategoryFilter('Saved Projects')}
-              className={categoryFilter === 'Saved Projects' ? 'active' : ''}
-            >
-              Saved Projects
-            </button>
-          </div>
           <label htmlFor="search">Search:</label>
           <input
             id="search"
@@ -66,20 +73,31 @@ const Gallery = () => {
           />
         </div>
         <div id="project-gallery">
-          {filteredProjects.map((project) => (
-            <div key={project.id} className="project-item">
-              <img
-                src={`/thumbnails/${project.id}.jpg`}
-                alt={project.name}
-              />
-              <div className="project-name">{project.name}</div>
-              <div className="project-category">{project.category}</div>
+          {filteredSaves.length > 0 ? (
+            filteredSaves.map((save) => (
+              <div key={save.activity.id} className="project-item">
+                <div className="project-name">{`${save.activity.StandardS}: ${save.activity.number}`}</div>
+                <div className="project-category">Past Program</div>
+                <div className="button-group">
+                  <button className="share-button" onClick={() => handleShare(save.activity)}>
+                    Share
+                  </button>
+                  <button className="navigate-button" onClick={() => handleSaves(save.activity)}>
+                    Navigate to Workspace
+                  </button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div>
+              <p>You have no past programs.</p>
             </div>
-          ))}
+          )}
         </div>
       </div>
     </div>
   );
 };
+ 
 
 export default Gallery;

@@ -886,6 +886,13 @@
           },
           "activity_template": {
             "type": "string"
+          },
+          "due_dates": {
+            "type": "string",
+            "format": "date"
+          },
+          "grade": {
+            "type": "string"
           }
         }
       },
@@ -929,6 +936,13 @@
             }
           },
           "activity_template": {
+            "type": "string"
+          },
+          "due_dates": {
+            "type": "string",
+            "format": "date"
+          },
+          "grade": {
             "type": "string"
           },
           "created_by": {

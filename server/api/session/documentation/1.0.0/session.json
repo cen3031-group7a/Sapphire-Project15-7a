@@ -613,11 +613,30 @@
                 "last_logged_in": {
                   "type": "string"
                 },
+
                 "programs": {
                   "type": "array",
                   "items": {
                     "type": "string"
-                  }
+                  },
+
+                "permissionone_viewcoursematerials": {
+                  "type": "boolean"
+                },
+                "permissiontwo_submitlateassignments": {
+                  "type": "boolean"
+                },
+                "permissionthree_discussionparticipation": {
+                  "type": "boolean"
+                },
+                "permissionfour_timelimits": {
+                  "type": "boolean"
+                },
+                "permissionfive_accessresources": {
+                  "type": "boolean"
+                },
+                "permissionsix_receivenotifications": {
+                  "type": "boolean"
                 },
                 "created_by": {
                   "type": "string"
@@ -702,8 +721,11 @@
                 "activity": {
                   "type": "string"
                 },
-                "student": {
-                  "type": "string"
+                "students": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "workspace": {
                   "type": "string"

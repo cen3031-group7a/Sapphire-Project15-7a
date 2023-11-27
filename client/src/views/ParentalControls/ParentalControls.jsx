@@ -1,15 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBar from '../../components/NavBar/NavBar';
 import { Link, useNavigate } from 'react-router-dom';
-import './ParentalControls.less'; 
+import './ParentalControls.less';
+import { getParent, getParents, postParents, getStudentMe } from '../../Utils/requests';
+import { postUser, setUserSession } from '../../Utils/AuthRequests';
+import { message } from 'antd';
+
+const CreateAccountModal = ({ closeModal, handleCreateAccount, currentStudent }) => {
+  const [newName, setNewName] = useState('');
+  const [newEmail, setNewEmail] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+
+  const handleNameChange = (e) => {
+    setNewName(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setNewEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setNewPassword(e.target.value);
+  };
+
+  const handleCreate = () => {
+    // Add any validation logic here before calling the create parent function
+    handleCreateAccount(newName, newEmail, newPassword, currentStudent);
+    closeModal();
+  };
+
+  return (
+    <div className="modal-overlay" onClick={closeModal}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <h2>Create Account</h2>
+        <div className="form-group">
+          <label>Name:</label>
+          <input type="text" id="name" value={newName} onChange={handleNameChange} required />
+        </div>
+        <div className="form-group">
+          <label>Email:</label>
+          <input type="email" id="email" value={newEmail} onChange={handleEmailChange} required />
+        </div>
+        <div className="form-group">
+          <label>Password:</label>
+          <input type="password" id="password" value={newPassword} onChange={handlePasswordChange} required />
+        </div>
+        <button onClick={handleCreate}>Create Account</button>
+        <button onClick={closeModal}>Cancel</button>
+      </div>
+    </div>
+  );
+};
 
 const ParentalControls = () => {
-  //possibly change this to parentalcontrollogin to differentiate from the actual page with the controls
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [parentList, setParentList] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentStudent, setCurrentStudent] = useState('');
 
-  //this page will take in a parents email and password and give them access to a dashboard, where they can enable permissions, see performance, and programs. 
+  useEffect(() => {
+    getParents().then((res) => {
+      if (res.data) {
+        setParentList(res.data);
+      } else {
+        message.error(res.err);
+      }
+    });
+  }, []); // <-- empty dependency array to run only once
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -20,14 +80,78 @@ const ParentalControls = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/parentalcontrolspage');
+    handleLogin();
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  useEffect(() => {
+    // Fetch the current student information here and update the state
+    getStudentMe().then((res) => {
+      if (res.data) {
+        setCurrentStudent(res.data);
+      } else {
+        message.error(res.err);
+      }
+    });
+  }, []);
+
+  const handleCreateAccount = async (newName, newEmail, newPassword, currentStudent) => {
+    try {
+      // Make a POST request to the Strapi API endpoint for creating a new user
+      const { data } = await postParents(newName, newEmail, newPassword, currentStudent);
+      // Log success message
+      message.log('Account created successfully');
+      // Redirect to the new user's sandbox
+      history.push(`/sandbox/${data.id}`);
+      
+      // Optionally, you can do something after successfully creating the account
+    } catch (error) {
+      // Handle errors
+      if (error.response) {
+        // The request was made, but the server responded with an error status code
+        message.error('Failed to create account:', error.response.data.message);
+      } else if (error.request) {
+        // The request was made, but no response was received
+        message.error('No response received. Please try again later.');
+      } else {
+        // Something happened in setting up the request that triggered an error
+        console.log('Account created successfully');
+      }
+    }
+  };
+
+  const handleLogin = async () => {
+    let body = { identifier: email, password: password };
+
+    postUser(body)
+      .then((response) => {
+        if (response.data.user.role.name === 'Parent') {
+          setUserSession(response.data.jwt, JSON.stringify(response.data.user));
+          navigate('/parentalcontrolspage');
+          console.log(JSON.stringify(response.data.user));
+        } else {
+          message.error('User is not a parent');
+        }
+      })
+      .catch((error) => {
+        message.error('Login failed. Please input a valid email and password.');
+      });
+  };
+
+
+
   return (
-    <div className='container nav-padding'>
+    <div className="container nav-padding">
       <NavBar />
-      <div id='activity-container'>
-        <div id='header'>
+      <div id="activity-container">
+      <div id='header'>
           <div className='page-title'>Parental Controls Login</div>
         </div>
         <form onSubmit={handleSubmit} className='login-form'>
@@ -59,11 +183,29 @@ const ParentalControls = () => {
               <button type='button' className='submit-button'>Forgot Password?</button>
             </div>
           </div>
-          <div className='center-button'>
-          <button type='button' className='submit-button'>Create Account</button>
-          </div>
           </form>
+        <div className="center-button">
+          <button type="button" className="submit-button" onClick={openModal}>
+            Create Account
+          </button>
+        </div>
+
+        <div>
+          <b>Parent List: </b>
+          {JSON.stringify(parentList)}
+        </div>
+
+        <div>
+          <b>Current Student: </b>
+          {JSON.stringify(currentStudent)}
+        </div>
+
       </div>
+      
+
+      {isModalOpen && (
+        <CreateAccountModal closeModal={closeModal} handleCreateAccount={handleCreateAccount} />
+      )}
     </div>
   );
 };

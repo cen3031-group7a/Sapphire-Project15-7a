@@ -1,0 +1,33 @@
+/* styles.css */
+
+.list-style {
+    text-align: left;
+    justify-content: center;
+    padding: 5px;
+    margin-left: 40px;
+    margin-right: 0px;
+    margin-bottom: 40px;
+    border-radius: 5px;
+    /* background-color: rgba(61, 159, 230, 0.45); */
+}
+
+.column-style {
+    flex: 1;
+    margin: 10px;
+    padding: 10px;
+    border: 3px solid #3b719f;
+    border-radius: 10px;
+    background-color: rgba(61, 159, 230, 0.45);
+    min-height: 620px;
+}
+
+.button-style {
+    display: flex;
+    justify-content: center;
+    margin-right: 30px;
+  }
+  
+  
+  
+  
+  

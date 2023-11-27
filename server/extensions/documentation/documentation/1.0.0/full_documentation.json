@@ -14,7 +14,8 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "11/20/2023 9:10:46 PM"
+
+    "x-generation-date": "11/26/2023 2:41:27 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -13406,6 +13407,13 @@
           },
           "activity_template": {
             "type": "string"
+          },
+          "due_dates": {
+            "type": "string",
+            "format": "date"
+          },
+          "grade": {
+            "type": "string"
           }
         }
       },
@@ -13449,6 +13457,13 @@
             }
           },
           "activity_template": {
+            "type": "string"
+          },
+          "due_dates": {
+            "type": "string",
+            "format": "date"
+          },
+          "grade": {
             "type": "string"
           },
           "created_by": {
@@ -13825,7 +13840,25 @@
                   "type": "array",
                   "items": {
                     "type": "string"
-                  }
+                  },
+                
+                "permissionone_viewcoursematerials": {
+                  "type": "boolean"
+                },
+                "permissiontwo_submitlateassignments": {
+                  "type": "boolean"
+                },
+                "permissionthree_discussionparticipation": {
+                  "type": "boolean"
+                },
+                "permissionfour_timelimits": {
+                  "type": "boolean"
+                },
+                "permissionfive_accessresources": {
+                  "type": "boolean"
+                },
+                "permissionsix_receivenotifications": {
+                  "type": "boolean"
                 },
                 "created_by": {
                   "type": "string"
@@ -14236,6 +14269,12 @@
                 "activity_template": {
                   "type": "string"
                 },
+                "due_dates": {
+                  "type": "string"
+                },
+                "grade": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -14370,6 +14409,12 @@
                   }
                 },
                 "activity_template": {
+                  "type": "string"
+                },
+                "due_dates": {
+                  "type": "string"
+                },
+                "grade": {
                   "type": "string"
                 },
                 "created_by": {
@@ -14645,6 +14690,113 @@
           },
           "user": {
             "type": "string"
+          },
+          "created_by": {
+            "type": "string"
+          },
+          "updated_by": {
+            "type": "string"
+          }
+        }
+      },
+      "Parent": {
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string",
+            "format": "password"
+          },
+          "student": {
+            "required": [
+              "id",
+              "enrolled"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "character": {
+                "type": "string"
+              },
+              "classroom": {
+                "type": "string"
+              },
+              "sessions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "enrolled": {
+                "type": "boolean"
+              },
+              "last_logged_in": {
+                "type": "string"
+              },
+              "permissionone_viewcoursematerials": {
+                "type": "boolean"
+              },
+              "permissiontwo_submitlateassignments": {
+                "type": "boolean"
+              },
+              "permissionthree_discussionparticipation": {
+                "type": "boolean"
+              },
+              "permissionfour_timelimits": {
+                "type": "boolean"
+              },
+              "permissionfive_accessresources": {
+                "type": "boolean"
+              },
+              "permissionsix_receivenotifications": {
+                "type": "boolean"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "name": {
+            "type": "string"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "NewParent": {
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string",
+            "format": "password"
+          },
+          "student": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time"
           },
           "created_by": {
             "type": "string"
@@ -14954,6 +15106,12 @@
               "activity_template": {
                 "type": "string"
               },
+              "due_dates": {
+                "type": "string"
+              },
+              "grade": {
+                "type": "string"
+              },
               "created_by": {
                 "type": "string"
               },
@@ -14962,47 +15120,83 @@
               }
             }
           },
-          "student": {
-            "required": [
-              "id",
-              "enrolled"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "character": {
-                "type": "string"
-              },
-              "classroom": {
-                "type": "string"
-              },
-              "sessions": {
-                "type": "array",
-                "items": {
+          "students": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "enrolled"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "character": {
+                  "type": "string"
+                },
+                "classroom": {
+                  "type": "string"
+                },
+                "sessions": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "enrolled": {
+                  "type": "boolean"
+                },
+                "last_logged_in": {
+                  "type": "string"
+                },
+                "parents": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
                   "type": "string"
                 }
+
               },
-              "enrolled": {
+              "permissionone_viewcoursematerials": {
                 "type": "boolean"
-              },
-              "last_logged_in": {
-                "type": "string"
               },
               "programs": {
                 "type": "array",
                 "items": {
                   "type": "string"
-                }
+                },
+
+              "permissiontwo_submitlateassignments": {
+                "type": "boolean"
+              },
+              "permissionthree_discussionparticipation": {
+                "type": "boolean"
+              },
+              "permissionfour_timelimits": {
+                "type": "boolean"
+              },
+              "permissionfive_accessresources": {
+                "type": "boolean"
+              },
+
+              "permissionsix_receivenotifications": {
+                "type": "boolean"
               },
               "created_by": {
                 "type": "string"
               },
               "updated_by": {
                 "type": "string"
+
               }
             }
           },
@@ -15068,8 +15262,11 @@
           "activity": {
             "type": "string"
           },
-          "student": {
-            "type": "string"
+          "students": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "workspace": {
             "type": "string"
@@ -15475,11 +15672,31 @@
                 "last_logged_in": {
                   "type": "string"
                 },
+
                 "programs": {
                   "type": "array",
                   "items": {
                     "type": "string"
-                  }
+                  },
+
+               
+                "permissionone_viewcoursematerials": {
+                  "type": "boolean"
+                },
+                "permissiontwo_submitlateassignments": {
+                  "type": "boolean"
+                },
+                "permissionthree_discussionparticipation": {
+                  "type": "boolean"
+                },
+                "permissionfour_timelimits": {
+                  "type": "boolean"
+                },
+                "permissionfive_accessresources": {
+                  "type": "boolean"
+                },
+                "permissionsix_receivenotifications": {
+                  "type": "boolean"
                 },
                 "created_by": {
                   "type": "string"
@@ -15564,8 +15781,11 @@
                 "activity": {
                   "type": "string"
                 },
-                "student": {
-                  "type": "string"
+                "students": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "workspace": {
                   "type": "string"
@@ -15901,6 +16121,63 @@
                 }
               }
             }
+          },
+
+
+          "parents": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "student": {
+                  "type": "string"
+                },
+                "saves": {
+                  "type": "string"
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "permissionone_viewcoursematerials": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissiontwo_submitlateassignments": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionthree_discussionparticipation": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionfour_timelimits": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionfive_accessresources": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionsix_receivenotifications": {
+            "type": "boolean",
+            "default": false
           }
         }
       },
@@ -15936,7 +16213,31 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+          "permissionone_viewcoursematerials": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissiontwo_submitlateassignments": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionthree_discussionparticipation": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionfour_timelimits": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionfive_accessresources": {
+            "type": "boolean",
+            "default": false
+          },
+          "permissionsix_receivenotifications": {
+            "type": "boolean",
+            "default": false
+          
           },
           "created_by": {
             "type": "string"
@@ -16078,6 +16379,12 @@
                 }
               },
               "activity_template": {
+                "type": "string"
+              },
+              "due_dates": {
+                "type": "string"
+              },
+              "grade": {
                 "type": "string"
               },
               "created_by": {
@@ -16598,6 +16905,7 @@
       "name": "Program"
     },
     {
+
       "name": "Sandbox"
     },
     {
