@@ -52,25 +52,31 @@ export default function ParentalControlsPage() {
     return <GradesComponent learningStandard={learningStandard} />;
   }
 
-  const [isChecked, setChecked] = useState(false); 
+  //const [isChecked, setChecked] = useState(false); 
   const {permissionone} = getPermissions("permissionone_viewcoursematerials");
   console.log(permissionone);
-  const [isCheckedViewMaterials, setCheckedViewMaterials] = useState(permissionone); //replaced automatic falses with actual getPermissions status
+  const [isCheckedViewMaterials, setCheckedViewMaterials] = useState(false); //replaced automatic falses with actual getPermissions status
+  //const [isCheckedViewMaterials, setCheckedViewMaterials] = useState(permissionone); //replaced automatic falses with actual getPermissions status
 
   const {permissiontwo} = getPermissions("permissiontwo_submitlateassignments");
-  const [isCheckedSubmitAssignments, setCheckedSubmitAssignments] = useState(permissiontwo);
+  const [isCheckedSubmitAssignments, setCheckedSubmitAssignments] = useState(false);
+  //const [isCheckedSubmitAssignments, setCheckedSubmitAssignments] = useState(permissiontwo);
 
   const {permissionthree} = getPermissions("permissionthree_discussionparticipation");
-  const [isCheckedParticipateDiscussions, setCheckedParticipateDiscussions] = useState(permissionthree);
+  const [isCheckedParticipateDiscussions, setCheckedParticipateDiscussions] = useState(false);
+  //const [isCheckedParticipateDiscussions, setCheckedParticipateDiscussions] = useState(permissionthree);
 
   const {permissionfour} = getPermissions("permissionfour_timelimits");
-  const [isCheckedToggleTimeLimits, setCheckedToggleTimeLimits] = useState(permissionfour);
+  const [isCheckedToggleTimeLimits, setCheckedToggleTimeLimits] = useState(false);
+  //const [isCheckedToggleTimeLimits, setCheckedToggleTimeLimits] = useState(permissionfour);
 
   const {permissionfive} = getPermissions("permissionfive_accessresources");
-  const [isCheckedAccessResources, setCheckedAccessResources] = useState(permissionfive);
+  const [isCheckedAccessResources, setCheckedAccessResources] = useState(false);
+  //const [isCheckedAccessResources, setCheckedAccessResources] = useState(permissionfive);
 
   const {permissionsix} = getPermissions("permissionsix_receivenotifications");
-  const [isCheckedReceiveNotifications, setCheckedReceiveNotifications] = useState(permissionsix);
+  const [isCheckedReceiveNotifications, setCheckedReceiveNotifications] = useState(false);
+  //const [isCheckedReceiveNotifications, setCheckedReceiveNotifications] = useState(permissionsix);
 
   return (
     <div className='container nav-padding'>
