@@ -4,7 +4,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import ToggleSwitch from "../../components/ToggleSwitch/ToggleSwitch"; 
 import './ParentalControlsPage.css';
 import GradesComponent from '../Grades/Grades';
-import { updatePermissions } from '../../Utils/requests';
+import { updatePermissions, getPermissions } from '../../Utils/requests';
 
 export default function ParentalControlsPage() {
   const listStyle = {
@@ -37,6 +37,7 @@ export default function ParentalControlsPage() {
   const [canChange, setCanChange] = useState(false);
   const handleClick = (e) => {
     setCanChange(!canChange);
+    //if canChange is now false (just clicked on save) then update the student's permissions statuses
   }
 
   const [learningStandard, setLessonModule] = useState({});
@@ -44,13 +45,24 @@ export default function ParentalControlsPage() {
     return <GradesComponent learningStandard={learningStandard} />;
   }
 
-  const [isChecked, setChecked] = useState(false);
-  const [isCheckedViewMaterials, setCheckedViewMaterials] = useState(false);
-  const [isCheckedSubmitAssignments, setCheckedSubmitAssignments] = useState(false);
-  const [isCheckedParticipateDiscussions, setCheckedParticipateDiscussions] = useState(false);
-  const [isCheckedToggleTimeLimits, setCheckedToggleTimeLimits] = useState(false);
-  const [isCheckedAccessResources, setCheckedAccessResources] = useState(false);
-  const [isCheckedReceiveNotifications, setCheckedReceiveNotifications] = useState(false);
+  const [isChecked, setChecked] = useState(false); 
+  const {permissionone} = getPermissions("permissionone_viewcoursematerials");
+  const [isCheckedViewMaterials, setCheckedViewMaterials] = useState(permissionone); //replaced automatic falses with actual getPermissions status
+
+  const {permissiontwo} = getPermissions("permissiontwo_submitlateassignments");
+  const [isCheckedSubmitAssignments, setCheckedSubmitAssignments] = useState(permissiontwo);
+
+  const {permissionthree} = getPermissions("permissionthree_discussionparticipation");
+  const [isCheckedParticipateDiscussions, setCheckedParticipateDiscussions] = useState(permissionthree);
+
+  const {permissionfour} = getPermissions("permissionfour_timelimits");
+  const [isCheckedToggleTimeLimits, setCheckedToggleTimeLimits] = useState(permissionfour);
+
+  const {permissionfive} = getPermissions("permissionfive_accessresources");
+  const [isCheckedAccessResources, setCheckedAccessResources] = useState(permissionfive);
+
+  const {permissionsix} = getPermissions("permissionsix_receivenotifications");
+  const [isCheckedReceiveNotifications, setCheckedReceiveNotifications] = useState(permissionsix);
 
   return (
     <div className='container nav-padding'>
