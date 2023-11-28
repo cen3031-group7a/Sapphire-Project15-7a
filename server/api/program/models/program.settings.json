@@ -15,8 +15,8 @@
       "type": "string"
     },
     "student": {
-      "model": "student",
-      "via": "programs"
+      "via": "programs",
+      "model": "student"
     },
     "saves": {
       "model": "save"

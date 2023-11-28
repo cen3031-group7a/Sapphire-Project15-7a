@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
-
 import ToggleSwitch from "../../components/ToggleSwitch/ToggleSwitch";
 import './ParentalControlsPage.css';
 import GradesComponent from '../Grades/Grades';
-import { updatePermissions, getPermissions, getPrograms } from '../../Utils/requests';
+import { updatePermissions, getPermissions, getPrograms, getStudentClassroom, getStudentSpecific } from '../../Utils/requests';
 
 export default function ParentalControlsPage() {
   const [canChange, setCanChange] = useState(false);
   const [programs, setPrograms] = useState([]);
+  const [learningStandard, setLessonModule] = useState({});
 
   useEffect(() => {
     const fetchPrograms = async () => {
@@ -24,16 +24,45 @@ export default function ParentalControlsPage() {
     fetchPrograms();
   }, [])
 
+  /*useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await getStudentClassroom();
+        if (res.data) {
+          if (res.data.lesson_module) {
+            setLessonModule(res.data.lesson_module);
+            //console.log('Data', res.data.lesson_module);
+          }
+        } else {
+          message.error(res.err);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);*/
+
+  const [student, setStudent] = useState({});
+  useEffect(() => {
+    // Fetch the current student information here and update the state
+    getStudentSpecific(32).then((res) => {
+      if (res.data) {
+        setStudent(res.data);
+      } else {
+        message.error(res.err);
+      }
+    });
+  }, []);
+  
   const listStyle = {
     textAlign: 'left',
     justifyContent: 'center',
     padding: '5px',
-    marginLeft: '40px',
+    marginLeft: '0px',
     marginRight: '0px',
     marginBottom: '40px',
     borderRadius: '5px',
-
-    //backgroundColor: 'rgba(61, 159, 230, 0.45)',
   }
 
   const columnStyle = {
@@ -56,44 +85,77 @@ export default function ParentalControlsPage() {
   const handleClick = (e) => {
     setCanChange(!canChange);
     //if canChange is now false (just clicked on save) then update the student's permissions statuses
-    updatePermissions("permissionone_viewcoursematerials", isCheckedViewMaterials);
-    updatePermissions("permissiontwo_submitlateassignments", isCheckedSubmitAssignments);
-    updatePermissions("permissionthree_discussionparticipation", isCheckedParticipateDiscussions);
-    updatePermissions("permissionfour_timelimits", isCheckedToggleTimeLimits);
-    updatePermissions("permissionfive_accessresources", isCheckedAccessResources);
-    updatePermissions("permissionsix_receivenotifications", isCheckedReceiveNotifications);
+    // updatePermissions("permissionone_viewcoursematerials", isCheckedViewMaterials);
+    // updatePermissions("permissiontwo_submitlateassignments", isCheckedSubmitAssignments);
+    // updatePermissions("permissionthree_discussionparticipation", isCheckedParticipateDiscussions);
+    // updatePermissions("permissionfour_timelimits", isCheckedToggleTimeLimits);
+    // updatePermissions("permissionfive_accessresources", isCheckedAccessResources);
+    // updatePermissions("permissionsix_receivenotifications", isCheckedReceiveNotifications);
   }
 
-  const [learningStandard, setLessonModule] = useState({});
   const renderPerformance = () => {
     return <GradesComponent learningStandard={learningStandard} />;
   }
 
-  //const [isChecked, setChecked] = useState(false); 
-  const { permissionone } = getPermissions("permissionone_viewcoursematerials");
-  console.log(permissionone);
-  const [isCheckedViewMaterials, setCheckedViewMaterials] = useState(false); //replaced automatic falses with actual getPermissions status
-  //const [isCheckedViewMaterials, setCheckedViewMaterials] = useState(permissionone); //replaced automatic falses with actual getPermissions status
+  // const [permissionOne, setPermissionOne] = useState(student.permissionone_viewcoursematerials);
+  // console.log(permissionOne);
 
-  const { permissiontwo } = getPermissions("permissiontwo_submitlateassignments");
+  //following code sets the buttons to be at the true or false value which is currently in the backend
+  const [isCheckedViewMaterials, setCheckedViewMaterials] = useState(false);
+  useEffect(() => {
+    // Update state only when student.permissionone_viewcoursematerials changes
+    if (student.permissionone_viewcoursematerials === true) {
+      setCheckedViewMaterials(true);
+    } else {
+      setCheckedViewMaterials(false);
+    }
+  }, [student.permissionone_viewcoursematerials]);
+  
   const [isCheckedSubmitAssignments, setCheckedSubmitAssignments] = useState(false);
-  //const [isCheckedSubmitAssignments, setCheckedSubmitAssignments] = useState(permissiontwo);
-
-  const { permissionthree } = getPermissions("permissionthree_discussionparticipation");
+  useEffect(() => {
+    if (student.permissiontwo_submitlateassignments === true) {
+      setCheckedSubmitAssignments(true);
+    } else {
+      setCheckedSubmitAssignments(false);
+    }
+  }, [student.permissiontwo_submitlateassignments]);
+  
   const [isCheckedParticipateDiscussions, setCheckedParticipateDiscussions] = useState(false);
-  //const [isCheckedParticipateDiscussions, setCheckedParticipateDiscussions] = useState(permissionthree);
-
-  const { permissionfour } = getPermissions("permissionfour_timelimits");
+  useEffect(() => {
+    if (student.permissionthree_discussionparticipation === true) {
+      setCheckedParticipateDiscussions(true);
+    } else {
+      setCheckedParticipateDiscussions(false);
+    }
+  }, [student.permissionthree_discussionparticipation]);
+ 
   const [isCheckedToggleTimeLimits, setCheckedToggleTimeLimits] = useState(false);
-  //const [isCheckedToggleTimeLimits, setCheckedToggleTimeLimits] = useState(permissionfour);
+  useEffect(() => {
+    if (student.permissionfour_timelimits === true) {
+      setCheckedToggleTimeLimits(true);
+    } else {
+      setCheckedToggleTimeLimits(false);
+    }
+  }, [student.permissionfour_timelimits]);
 
-  const { permissionfive } = getPermissions("permissionfive_accessresources");
   const [isCheckedAccessResources, setCheckedAccessResources] = useState(false);
-  //const [isCheckedAccessResources, setCheckedAccessResources] = useState(permissionfive);
+  useEffect(() => {
+    if (student.permissionfive_accessresources === true) {
+      setCheckedAccessResources(true);
+    } else {
+      setCheckedAccessResources(false);
+    }
+  }, [student.permissionfive_accessresources]);
 
-  const { permissionsix } = getPermissions("permissionsix_receivenotifications");
   const [isCheckedReceiveNotifications, setCheckedReceiveNotifications] = useState(false);
-  //const [isCheckedReceiveNotifications, setCheckedReceiveNotifications] = useState(permissionsix);
+  useEffect(() => {
+    if (student.permissionsix_receivenotifications === true) {
+      setCheckedReceiveNotifications(true);
+    } else {
+      setCheckedReceiveNotifications(false);
+    }
+  }, [student.permissionsix_receivenotifications]);
+
 
   return (
     <div className='container nav-padding'>
@@ -119,10 +181,9 @@ export default function ParentalControlsPage() {
           </div>
 
           {/* Student Grades Section */}
-          <div style={columnStyle} id='grades-programs-container'>
-
-            {renderPerformance()}
-          </div>
+          <div style={columnStyle} id='grades-programs-container'> 
+              {renderPerformance()}
+            </div>
 
           {/* Student Permissions Section */}
           <div style={columnStyle}>
@@ -162,7 +223,6 @@ export default function ParentalControlsPage() {
               <button onClick={handleClick}>
                 {canChange ? "Save Permissions" : "Edit Permissions"}
               </button>
-              {/**/}
             </div>
           </div>
         </div>
