@@ -128,7 +128,7 @@ const ParentalControls = () => {
       // Optionally, you can do something after successfully creating the account
     } catch (error) {
       // Handle errors
-      if (error) {
+      if (!error) {
         message.error('Failed to create account.');
       } else {
         console.log('Account created successfully');
@@ -148,7 +148,7 @@ const ParentalControls = () => {
       // Optionally, you can do something after successfully creating the account
     } catch (error) {
       // Handle errors
-      if (error) {
+      if (!error) {
         message.error('Failed to create account.');
       } else {
         console.log('Parent account created successfully');
