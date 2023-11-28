@@ -782,3 +782,11 @@ export const getPermissions = async (id) =>
     auth: true,
     error: 'Failed to retrieve Users',
   });
+
+  export const getStudentSpecific = async (id) =>
+  makeRequest({
+    method: GET,
+    path: `${server}/students/${id}`,
+    auth: true,
+    error: 'Failed to retrieve permission status',
+  });

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
-import { getStudentClassroom } from '../../Utils/requests';
 import ToggleSwitch from "../../components/ToggleSwitch/ToggleSwitch";
 import './ParentalControlsPage.css';
 import GradesComponent from '../Grades/Grades';
-import { updatePermissions, getPermissions, getPrograms } from '../../Utils/requests';
+import { updatePermissions, getPermissions, getPrograms, getStudentClassroom, getStudentSpecific } from '../../Utils/requests';
 
 export default function ParentalControlsPage() {
   const [canChange, setCanChange] = useState(false);
   const [programs, setPrograms] = useState([]);
+  const [learningStandard, setLessonModule] = useState({});
 
   useEffect(() => {
     const fetchPrograms = async () => {
@@ -24,7 +24,6 @@ export default function ParentalControlsPage() {
     fetchPrograms();
   }, [])
 
-  const [learningStandard, setLessonModule] = useState({});
   /*useEffect(() => {
     const fetchData = async () => {
       try {
@@ -44,22 +43,17 @@ export default function ParentalControlsPage() {
     fetchData();
   }, []);*/
 
-  /*const [student, setStudent] = useState({});
+  const [student, setStudent] = useState({});
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await getStudentMe();
-        if (res.data) {
-          setStudent(res.data);
-        } else {
-          message.error(res.err);
-        }
-      } catch (error) {
-        console.error(error);
+    // Fetch the current student information here and update the state
+    getStudentSpecific(32).then((res) => {
+      if (res.data) {
+        setStudent(res.data);
+      } else {
+        message.error(res.err);
       }
-    };
-    fetchData();
-  }, []);*/
+    });
+  }, []);
   
   const listStyle = {
     textAlign: 'left',
@@ -103,31 +97,65 @@ export default function ParentalControlsPage() {
     return <GradesComponent learningStandard={learningStandard} />;
   }
 
-  const [isChecked, setChecked] = useState(false); 
+  // const [permissionOne, setPermissionOne] = useState(student.permissionone_viewcoursematerials);
+  // console.log(permissionOne);
 
-  //const {permissionone} = getPermissions("permissionone_viewcoursematerials");
-  const [isCheckedViewMaterials, setCheckedViewMaterials] = useState(false); //replaced automatic falses with actual getPermissions status
-  //const [isCheckedViewMaterials, setCheckedViewMaterials] = useState(permissionone); //replaced automatic falses with actual getPermissions status
-
-  //const {permissiontwo} = getPermissions("permissiontwo_submitlateassignments");
+  //following code sets the buttons to be at the true or false value which is currently in the backend
+  const [isCheckedViewMaterials, setCheckedViewMaterials] = useState(false);
+  useEffect(() => {
+    // Update state only when student.permissionone_viewcoursematerials changes
+    if (student.permissionone_viewcoursematerials === true) {
+      setCheckedViewMaterials(true);
+    } else {
+      setCheckedViewMaterials(false);
+    }
+  }, [student.permissionone_viewcoursematerials]);
+  
   const [isCheckedSubmitAssignments, setCheckedSubmitAssignments] = useState(false);
-  //const [isCheckedSubmitAssignments, setCheckedSubmitAssignments] = useState(permissiontwo);
-
-  //const {permissionthree} = getPermissions("permissionthree_discussionparticipation");
+  useEffect(() => {
+    if (student.permissiontwo_submitlateassignments === true) {
+      setCheckedSubmitAssignments(true);
+    } else {
+      setCheckedSubmitAssignments(false);
+    }
+  }, [student.permissiontwo_submitlateassignments]);
+  
   const [isCheckedParticipateDiscussions, setCheckedParticipateDiscussions] = useState(false);
-  //const [isCheckedParticipateDiscussions, setCheckedParticipateDiscussions] = useState(permissionthree);
-
-  //const {permissionfour} = getPermissions("permissionfour_timelimits");
+  useEffect(() => {
+    if (student.permissionthree_discussionparticipation === true) {
+      setCheckedParticipateDiscussions(true);
+    } else {
+      setCheckedParticipateDiscussions(false);
+    }
+  }, [student.permissionthree_discussionparticipation]);
+ 
   const [isCheckedToggleTimeLimits, setCheckedToggleTimeLimits] = useState(false);
-  //const [isCheckedToggleTimeLimits, setCheckedToggleTimeLimits] = useState(permissionfour);
+  useEffect(() => {
+    if (student.permissionfour_timelimits === true) {
+      setCheckedToggleTimeLimits(true);
+    } else {
+      setCheckedToggleTimeLimits(false);
+    }
+  }, [student.permissionfour_timelimits]);
 
-  //const {permissionfive} = getPermissions("permissionfive_accessresources");
   const [isCheckedAccessResources, setCheckedAccessResources] = useState(false);
-  //const [isCheckedAccessResources, setCheckedAccessResources] = useState(permissionfive);
+  useEffect(() => {
+    if (student.permissionfive_accessresources === true) {
+      setCheckedAccessResources(true);
+    } else {
+      setCheckedAccessResources(false);
+    }
+  }, [student.permissionfive_accessresources]);
 
-  //const {permissionsix} = getPermissions("permissionsix_receivenotifications");
   const [isCheckedReceiveNotifications, setCheckedReceiveNotifications] = useState(false);
-  //const [isCheckedReceiveNotifications, setCheckedReceiveNotifications] = useState(permissionsix);
+  useEffect(() => {
+    if (student.permissionsix_receivenotifications === true) {
+      setCheckedReceiveNotifications(true);
+    } else {
+      setCheckedReceiveNotifications(false);
+    }
+  }, [student.permissionsix_receivenotifications]);
+
 
   return (
     <div className='container nav-padding'>
