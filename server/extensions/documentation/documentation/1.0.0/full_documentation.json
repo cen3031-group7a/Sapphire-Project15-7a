@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "11/27/2023 5:31:56 AM"
+    "x-generation-date": "11/28/2023 12:55:48 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -14706,7 +14706,9 @@
       },
       "Parent": {
         "required": [
-          "id"
+          "id",
+          "name",
+          "lastname"
         ],
         "properties": {
           "id": {
@@ -14786,6 +14788,51 @@
           "lastname": {
             "type": "string"
           },
+          "users_permissions_user": {
+            "required": [
+              "id",
+              "username",
+              "email"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "resetPasswordToken": {
+                "type": "string"
+              },
+              "confirmationToken": {
+                "type": "string"
+              },
+              "confirmed": {
+                "type": "boolean"
+              },
+              "blocked": {
+                "type": "boolean"
+              },
+              "role": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -14793,6 +14840,10 @@
         }
       },
       "NewParent": {
+        "required": [
+          "name",
+          "lastname"
+        ],
         "properties": {
           "student": {
             "type": "string"
@@ -14801,6 +14852,9 @@
             "type": "string"
           },
           "lastname": {
+            "type": "string"
+          },
+          "users_permissions_user": {
             "type": "string"
           },
           "published_at": {
@@ -16062,7 +16116,9 @@
             "type": "array",
             "items": {
               "required": [
-                "id"
+                "id",
+                "name",
+                "lastname"
               ],
               "properties": {
                 "id": {
@@ -16075,6 +16131,9 @@
                   "type": "string"
                 },
                 "lastname": {
+                  "type": "string"
+                },
+                "users_permissions_user": {
                   "type": "string"
                 },
                 "published_at": {

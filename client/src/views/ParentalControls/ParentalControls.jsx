@@ -6,13 +6,23 @@ import { getParent, getParents, postParents, getStudentMe, postRegisterParent, g
 import { postUser, setUserSession } from '../../Utils/AuthRequests';
 import { message } from 'antd';
 
-const CreateAccountModal = ({ closeModal, handleCreateAccount, currentStudent }) => {
+const CreateAccountModal = ({ closeModal, handleCreateAccount, handleCreateParent }) => {
   const [newName, setNewName] = useState('');
+  const [newLastname, setNewLastname] = useState('');
+  const [newUsername, setNewUsername] = useState('');
   const [newEmail, setNewEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
 
   const handleNameChange = (e) => {
     setNewName(e.target.value);
+  };
+
+  const handleLastnameChange = (e) => {
+    setNewLastname(e.target.value);
+  };
+
+  const handleUsernameChange = (e) => {
+    setNewUsername(e.target.value);
   };
 
   const handleEmailChange = (e) => {
@@ -24,17 +34,23 @@ const CreateAccountModal = ({ closeModal, handleCreateAccount, currentStudent })
   };
 
   const handleCreate = () => {
-    // Add any validation logic here before calling the create parent function
-    handleCreateAccount(newName, newEmail, newPassword);
+    handleCreateAccount(newUsername, newEmail, newPassword);
+    handleCreateParent(newName, newLastname);
     closeModal();
   };
 
   return (
-    <div className="modal-overlay" onClick={closeModal}>
+    <div className="modal-overlay">
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <h2>Create Account</h2>
         <div className="form-group">
-          <input type="create" placeholder="Username" style={{ marginBottom: '5%', width: '95%' }} value={newName} onChange={handleNameChange} required />
+          <input type="create" placeholder="Name" style={{ marginBottom: '5%', width: '95%' }} value={newName} onChange={handleNameChange} required />
+        </div>
+        <div className="form-group">  
+          <input type="create" placeholder="Lastname" style={{ marginBottom: '5%', width: '95%' }} value={newLastname} onChange={handleLastnameChange} required />
+        </div>
+        <div className="form-group">
+          <input type="create" placeholder="Username" style={{ marginBottom: '5%', width: '95%' }} value={newUsername} onChange={handleUsernameChange} required />
         </div>
         <div className="form-group">
           <input type="email" placeholder="Email" style={{ marginRight: '10%', width: '90%' }} value={newEmail} onChange={handleEmailChange} required />
@@ -93,17 +109,17 @@ const ParentalControls = () => {
     // Fetch the current student information here and update the state
     getStudentMe().then((res) => {
       if (res.data) {
-        setCurrentStudent(res.data);
+        setCurrentStudent(res.data.students[0].name);
       } else {
         message.error(res.err);
       }
     });
   }, []);
 
-  const handleCreateAccount = async (newName, newEmail, newPassword) => {
+  const handleCreateAccount = async (newUsername, newEmail, newPassword) => {
     try {
       // Make a POST request to the Strapi API endpoint for creating a new user
-      const { data, error } = await postRegisterParent(newName, newEmail, newPassword);
+      const { data, error } = await postRegisterParent(newUsername, newEmail, newPassword);
       // Log success message
       message.log('Account created successfully');
       // Redirect to the new user's sandbox
@@ -112,10 +128,30 @@ const ParentalControls = () => {
       // Optionally, you can do something after successfully creating the account
     } catch (error) {
       // Handle errors
-      if (!error) {
+      if (error) {
         message.error('Failed to create account.');
       } else {
         console.log('Account created successfully');
+      }
+    }
+  };
+
+  const handleCreateParent = async (newName, newLastname) => {
+    try {
+      // Make a POST request to the Strapi API endpoint for creating a new user
+      const { data, error } = await postParents(newName, newLastname);
+      // Log success message
+      message.log('Parent account created successfully');
+      // Redirect to the new user's sandbox
+      history.push(`/sandbox/${data.id}`);
+      
+      // Optionally, you can do something after successfully creating the account
+    } catch (error) {
+      // Handle errors
+      if (error) {
+        message.error('Failed to create account.');
+      } else {
+        console.log('Parent account created successfully');
       }
     }
   };
@@ -184,21 +220,21 @@ const ParentalControls = () => {
           </button>
         </div>
 
-        {/* <div>
+        {/* { <div>
           <b>Parent List: </b>
           {JSON.stringify(parentList)}
         </div>
 
-        <div>
-          <b>Current Student: </b>
-          {JSON.stringify(currentStudent)}
-        </div> */}
+          <div>
+            <b>Current Student: </b>
+            {JSON.stringify(currentStudent)}
+          </div> } */}
 
       </div>
       
 
       {isModalOpen && (
-        <CreateAccountModal closeModal={closeModal} handleCreateAccount={handleCreateAccount} />
+        <CreateAccountModal closeModal={closeModal} handleCreateAccount={handleCreateAccount} handleCreateParent={handleCreateParent} />
       )}
     </div>
   );

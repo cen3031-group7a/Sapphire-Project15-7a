@@ -820,7 +820,9 @@
             "type": "array",
             "items": {
               "required": [
-                "id"
+                "id",
+                "name",
+                "lastname"
               ],
               "properties": {
                 "id": {
@@ -833,6 +835,9 @@
                   "type": "string"
                 },
                 "lastname": {
+                  "type": "string"
+                },
+                "users_permissions_user": {
                   "type": "string"
                 },
                 "published_at": {

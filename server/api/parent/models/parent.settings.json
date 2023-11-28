@@ -15,10 +15,16 @@
       "model": "student"
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "lastname": {
-      "type": "string"
+      "type": "string",
+      "required": true
+    },
+    "users_permissions_user": {
+      "plugin": "users-permissions",
+      "model": "user"
     }
   }
 }
