@@ -12,6 +12,7 @@ export default function ParentalControlsPage() {
   const [learningStandard, setLessonModule] = useState({});
 
   useEffect(() => {
+    //get the students current programs to load into student programs section
     const fetchPrograms = async () => {
       const { data, err } = await getPrograms();
       if (!err) {
@@ -24,24 +25,6 @@ export default function ParentalControlsPage() {
     fetchPrograms();
   }, [])
 
-  /*useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await getStudentClassroom();
-        if (res.data) {
-          if (res.data.lesson_module) {
-            setLessonModule(res.data.lesson_module);
-            //console.log('Data', res.data.lesson_module);
-          }
-        } else {
-          message.error(res.err);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, []);*/
 
   const [student, setStudent] = useState({});
   useEffect(() => {
@@ -76,6 +59,7 @@ export default function ParentalControlsPage() {
   };
 
   const buttonStyle = {
+    //style for Edit Permissions button
     display: 'flex',
     justifyContent: 'center',
     marginRight: '30px',
@@ -98,9 +82,6 @@ export default function ParentalControlsPage() {
   const renderPerformance = () => {
     return <GradesComponent learningStandard={learningStandard} />;
   }
-
-  // const [permissionOne, setPermissionOne] = useState(student.permissionone_viewcoursematerials);
-  // console.log(permissionOne);
 
   //following code sets the buttons to be at the true or false value which is currently in the backend
   const [isCheckedViewMaterials, setCheckedViewMaterials] = useState(false);
@@ -174,6 +155,7 @@ export default function ParentalControlsPage() {
             <div id='program-list' style={listStyle}>
               <ul>
                 {programs.map((program) => (
+                  //display previously retrieved programs
                   <Link className='link' to={`/sandbox`} key={program.id}>
                     <li id={program.id}>{program.title}</li>
                   </Link>
@@ -184,12 +166,14 @@ export default function ParentalControlsPage() {
 
           {/* Student Grades Section */}
           <div style={columnStyle} id='grades-programs-container'> 
-              {renderPerformance()}
+              {//use grades component to display student performance
+              renderPerformance()}
             </div>
 
           {/* Student Permissions Section */}
           <div style={columnStyle}>
             <h2>Student Permissions</h2>
+            {/*show the different buttons with attached text then edit permissions button at bottom*/}
             <ToggleSwitch
               label="View Course Materials"
               isChecked={isCheckedViewMaterials}
@@ -223,7 +207,8 @@ export default function ParentalControlsPage() {
               disabled={!canChange} />
             <div id='add-button' style={buttonStyle}>
               <button onClick={handleClick}>
-                {canChange ? "Save Permissions" : "Edit Permissions"}
+                {//if not yet clicked display as edit permissions, if has been clicked it is now the save permissions button
+                canChange ? "Save Permissions" : "Edit Permissions"}
               </button>
             </div>
           </div>
