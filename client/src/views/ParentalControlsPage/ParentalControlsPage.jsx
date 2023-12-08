@@ -85,12 +85,14 @@ export default function ParentalControlsPage() {
   const handleClick = (e) => {
     setCanChange(!canChange);
     //if canChange is now false (just clicked on save) then update the student's permissions statuses
-    // updatePermissions("permissionone_viewcoursematerials", isCheckedViewMaterials);
-    // updatePermissions("permissiontwo_submitlateassignments", isCheckedSubmitAssignments);
-    // updatePermissions("permissionthree_discussionparticipation", isCheckedParticipateDiscussions);
-    // updatePermissions("permissionfour_timelimits", isCheckedToggleTimeLimits);
-    // updatePermissions("permissionfive_accessresources", isCheckedAccessResources);
-    // updatePermissions("permissionsix_receivenotifications", isCheckedReceiveNotifications);
+    if (canChange == false) {
+      //updatePermissions("permissionone_viewcoursematerials", isCheckedViewMaterials);
+      // updatePermissions("permissiontwo_submitlateassignments", isCheckedSubmitAssignments);
+      // updatePermissions("permissionthree_discussionparticipation", isCheckedParticipateDiscussions);
+      // updatePermissions("permissionfour_timelimits", isCheckedToggleTimeLimits);
+      // updatePermissions("permissionfive_accessresources", isCheckedAccessResources);
+      // updatePermissions("permissionsix_receivenotifications", isCheckedReceiveNotifications);
+    }
   }
 
   const renderPerformance = () => {
