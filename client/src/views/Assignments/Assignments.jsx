@@ -20,6 +20,7 @@ function Assignments() {
   const [activeTab, setActiveTab] = useState('tab1');
   const navigate = useNavigate();
 
+  // load relevant information
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -27,12 +28,10 @@ function Assignments() {
         if (res.data) {
           if (res.data.lesson_module) {
             setLessonModule(res.data.lesson_module);
-            //console.log('Data', res.data.lesson_module);
           }
   
           if (res.data.lesson_module.activities) {
             setActivities(res.data.lesson_module.activities);
-            //console.log('actvities: ',res.data.lesson_module.activities[0]);
           }
         } else {
           message.error(res.err);
@@ -40,18 +39,13 @@ function Assignments() {
         const s = await getStudentMe();
         const studentID = s.data.students[0].id;
         const studentName = s.data.students[0].name;
-    
-        console.log('MY ID', studentID);
-    
+        
         const savesRes = await getSaved();
-        console.log('Saves:', savesRes);
     
         const savesForLoggedInStudent = savesRes.data.filter((save) => {
           return save.students.some((student) => student.id === studentID);
         });
-    
-        console.log('Saves for logged-in student:', savesForLoggedInStudent);
-    
+        
         const allStudentsInProjects = savesForLoggedInStudent.flatMap((save) =>
           save.students.map((student) => student.name)
         );
@@ -59,7 +53,6 @@ function Assignments() {
         const uniqueStudentsInProjects = [...new Set(allStudentsInProjects)];
     
         setSharedWith(uniqueStudentsInProjects.filter((name) => name !== studentName));        setIdOfStudentLoggedin(studentID);
-        console.log(idOfStudentLoggedin);
         if (savesForLoggedInStudent) {
           try {
             setSaves(savesForLoggedInStudent);
@@ -76,16 +69,19 @@ function Assignments() {
     fetchData();
   }, []);
 
+  // open workspace if an activity is selected
   const handleSelection = (activity) => {
     activity.lesson_module_name = learningStandard.name;
     localStorage.setItem('my-activity', JSON.stringify(activity));
     navigate('/workspace');
   };
 
+  // render the 'shared with' component
 const renderSharedWith = () => {
   return (
     <div id='shared-with-section'>
       <h1 id='shared-with-title'>Shared Projects With:</h1>
+      {/* if projects have been shared, render them. otherwise, print a message  */}
       {sharedWith.length > 0 ? (
         sharedWith.map((shared) => (
           <div key={shared} className='shared-with-item'>
@@ -99,23 +95,26 @@ const renderSharedWith = () => {
   );
 };
 
-
+  // if a past program is selected, open it
   const handleSaves = (activity) =>{
-    console.log('Name: ', saves.activity);
     activity.lesson_module_name = saves.activity;
     localStorage.setItem('my-activity', JSON.stringify(activity));
     navigate('/workspace');
   }
 
+  // render separate grade component to display performance
   const renderPerformance = () => {
     return <GradesComponent learningStandard={learningStandard} />;
   };
+
+  // render past programs component
   const renderPastPrograms = () => {
   
     return (
       <div id='past-programs-section'>
         <h1 id='past-programs-title'>Past Programs</h1>
         <ul>
+          {/* if past programs can be found, display them. otherwise, print a message  */}
           {saves.length > 0 ? (
             saves.map((save) => (
               <div key={save.activity.id} onClick={() => handleSaves(save.activity)}>
@@ -134,6 +133,7 @@ const renderSharedWith = () => {
     );
   };
 
+  // for a given activity, render its due date via backend
   const renderDueDates = (activities) => {
     const formatDate = (dueDate) => {
       const options = { month: 'long', day: 'numeric' , timeZone: 'UTC'};
@@ -143,6 +143,7 @@ const renderSharedWith = () => {
   
     return (
       <div>
+        {/* if activities can be found, render their due dates. otherwise, print a message  */}
         {Array.isArray(activities) && activities.length > 0 ? (
           <ul>
             {activities.map((activity, index) => (
@@ -151,14 +152,13 @@ const renderSharedWith = () => {
                   <li
                    style={{
                     flex: 1,
-                    backgroundColor: isPastDue(activity.due_dates) ? '#FF3232' : '#4CA64C',
+                    backgroundColor: isPastDue(activity.due_dates) ? '#FF3232' : '#4CA64C', // will be red if past due, green otherwise
                     padding: '3px',
                     borderRadius: '10px',
                     marginLeft: '5vh',
                     color: '#414141',
                     fontSize: '1.5vh',
                     border: '1.5px solid #414141',
-                    // marginBottom: '10px',
                   }}
                   >
                     {`Due Date: ${formatDate(activity.due_dates)}`}
@@ -174,22 +174,22 @@ const renderSharedWith = () => {
     );
   };
   
+  // check if an assignment is past due
   const isPastDue = (dueDate) => {
     const now = new Date();
     const due = new Date(dueDate);
     return now > due;
   };
   
-  
+// change date on calendar  
 const handleDateChange = (date) => {
   setSelectedDate(date);
    const formattedDate = date.toISOString().split('T')[0];
-   console.log("formatted date: ",formattedDate ); 
    const dueActivity = activities.find((activity) => activity.due_dates === formattedDate);
-   console.log("activites: ",dueActivity ); 
    setSelectedActivity(dueActivity);
 };
 
+// calendar helper function
 const tileContent = ({ date, view }) => {
   if (view === 'month') {
     const formattedDate = date.toISOString().split('T')[0];
@@ -210,6 +210,7 @@ const tileContent = ({ date, view }) => {
   return null;
 };
 
+  // assignments component
   return (
     <div className='container nav-padding'>
       <NavBar />
@@ -219,8 +220,10 @@ const tileContent = ({ date, view }) => {
         </div>
         <div id='classroom-container'>
           <div id='activity-calendar-container'>
+            {/* display activities and their due date  */}
             <div id='activity-list-section'>
               <ul>
+                {/* if activities can be found, display them. If not, print a message  */}
                 {learningStandard.activities ? (
                   learningStandard.activities
                     .sort((activity1, activity2) => activity1.number - activity2.number)
@@ -245,6 +248,7 @@ const tileContent = ({ date, view }) => {
                 )}
               </ul>
             </div>
+            {/* display calendar to represent due dates  */}
             <div id='calendar-container'>
               <div id='calendar-textbox'>
                 <h2 style={{ height: '50%', margin: '0px'}}>Selected Date: {selectedDate && selectedDate.toLocaleDateString()}</h2>
@@ -260,7 +264,9 @@ const tileContent = ({ date, view }) => {
               />
             </div>
           </div>
+          {/* display grades, past programs, and shared with  */}
           <div id='grades-programs-container'> 
+            {/* tab system to switch between view  */}
             <div id='tab-taskbar'>
               <button className={activeTab === 'tab1' ? 'active-tab' : ''} onClick={() => setActiveTab('tab1')}>
                 Performance and Grades
@@ -274,6 +280,7 @@ const tileContent = ({ date, view }) => {
           </div>
 
             <div style={{ height: '90%'}}>
+              {/* render display based on selected tab  */}
               {activeTab === 'tab1' && <div className="content" style={{height: '100%'}}>{renderPerformance()}</div>}
               {activeTab === 'tab2' && <div className="content" style={{height: '100%'}}>{renderPastPrograms()}</div>}
               {activeTab === 'tab3' && <div className="content" style={{height: '100%'}}>{renderSharedWith()}</div>}

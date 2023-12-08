@@ -3,7 +3,6 @@ import './Grades.less';
 
 const GradesComponent = ({ learningStandard }) => {
 
-    // console.log('LS', learningStandard.expectations);
     return (
         <div id='grades-section'>
         <h1 id='grades-title'>Performance and Grades</h1>
@@ -11,6 +10,7 @@ const GradesComponent = ({ learningStandard }) => {
             <div className='program-name' style={{marginBottom: '3%'}}> <b>Activity</b> </div>
             <div className='program-grade' style={{marginBottom: '3%'}}> <b>Grade</b> </div>
         </div>
+        {/* if activities can be found, render their grades. otherwise, display 'no grades available' */}
         {learningStandard.activities ? (
             learningStandard.activities.map((activity) => (
             <div key={activity.id} className='program-section'>
