@@ -193,7 +193,7 @@
   resolved "https://registry.npmjs.org/@types/w3c-web-serial/-/w3c-web-serial-1.0.5.tgz"
   integrity sha512-gpWNghA1RjPc92puT2HRRRFjv0MDVcpS9yTjJPLwCRU+w1YQTmJommTEL1w7l6Llq5/2cbzH1B4jHx/EP0PcjQ==
 
-"@vitejs/plugin-react-swc@^3.2.0":
+"@vitejs/plugin-react-swc@^3.4.0":
   version "3.4.0"
   resolved "https://registry.npmjs.org/@vitejs/plugin-react-swc/-/plugin-react-swc-3.4.0.tgz"
   integrity sha512-m7UaA4Uvz82N/0EOVpZL4XsFIakRqrFKeSNxa1FBLSXGvWrWRBwmZb4qxk+ZIVAZcW3c3dn5YosomDgx62XWcQ==

@@ -140,3 +140,41 @@ Before submitting a pull request, rebase the feature branch into the target bran
 
 - PRs to **master** should squash and merge
 - PRs to all other branches should create a merge commit
+
+## Project Features Implemented
+
+### Home Dashboard
+
+![Home Dashboard](images/home-dashboard.png)
+
+### My Programs
+
+![My Programs](images/my-programs.png)
+
+### Parental Controls
+
+![Parental Controls](images/parental-controls.png)
+
+![Parental Controls - Create Account](images/parental-controls-create.png)
+
+![Parental Controls - Permissions](images/parental-controls-permissions.png)
+
+### Classroom
+
+![Classroom](images/classroom.png)
+
+![Classroom - Past Programs / Shared With](images/past-programs-shared-with.png)
+
+### Gallery
+
+![Gallery](images/gallery.png)
+
+## Instructions for how to run the project locally
+
+## How to update database and server connections
+
+## Update the database and STRAPI dump files in your file directory
+
+## Outstanding work
+
+## Built upon (credit people/organizations you borrowed code from or APIs you used - e.g., Bootstrap, emails, authentication etc)
